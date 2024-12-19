@@ -47,27 +47,6 @@ require("lazy").setup({
                 },
             },
         },
-
-        {
-            "hrsh7th/nvim-cmp",
-            opts = function(_, opts)
-                opts.mapping = {
-                    ["<CR>"] = require("cmp").mapping.confirm({ select = true }),
-                    ["<Tab>"] = require("cmp").mapping.select_next_item(),
-                    ["<S-Tab>"] = require("cmp").mapping.select_prev_item(),
-                }
-            end,
-        },
-        {
-            "akinsho/toggleterm.nvim",
-            config = function()
-                require("toggleterm").setup({
-                    size = 7,                 -- ターミナルの高さ
-                    open_mapping = [[<C-\>]], -- トグルキー（Ctrl+\）
-                    direction = "horizontal", -- 水平表示（"vertical"も可能）
-                })
-            end,
-        },
         { import = "plugins" },
     },
     defaults = {

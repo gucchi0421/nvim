@@ -11,3 +11,4 @@ map('i', 'jj', '<Esc>', opts)
 -- ノーマルモードでのキーマップ
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opts)
 map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
+map('n', '<leader>ft', '<cmd>Telescope current_buffer_fuzzy_find<cr>', opts)
