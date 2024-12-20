@@ -1,9 +1,27 @@
 return {
+    -- transparent
     { "xiyaowong/transparent.nvim" },
-    { "neanias/everforest-nvim" },
-    { "LazyVim/LazyVim",
+
+    -- everforest
+    -- { "neanias/everforest-nvim" },
+
+    -- ayu
+    {
+        "Shatur/neovim-ayu",
+        config = function()
+            require("ayu").setup({
+                mirage = true,
+                overrides = {},
+            })
+        end,
+    },
+
+    -- テーマを選択
+    {
+        "LazyVim/LazyVim",
         opts = {
-            colorscheme = "everforest",
+            -- colorscheme = "everforest",
+            colorscheme = "ayu",
         },
     },
 }
