@@ -49,3 +49,15 @@ sudo install lazygit -D -t /usr/local/bin/
 
 # n ~/.config/lazygit/config.yml
 ```
+
+
+# Windows
+```
+# win-depsのバイナリをC:\Program Filesに入れてPath通しておく
+
+winget install --id=Neovim.Neovim -e
+nvim -v
+
+cd $env:LOCALAPPDATA\
+git clone https://github.com/gucchi0421/nvim.git
+```
