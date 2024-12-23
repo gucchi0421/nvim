@@ -5,7 +5,7 @@ return {
             "leoluz/nvim-dap-go",
             "mfussenegger/nvim-dap-python",
             "rcarriga/nvim-dap-ui",
-            "nvim-neotest/nvim-nio", -- この行を追加したのだ！
+            "nvim-neotest/nvim-nio",
         },
         config = function()
             -- Goの設定

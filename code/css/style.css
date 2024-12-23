@@ -2,8 +2,12 @@
     text-decoration: underline;
 }
 
-
 .nande {
     text-decoration: underline;
+}
 
+.nade {
+    font-size: 10px;
+    text-decoration: underline;
+    width: calc(100% - 10px);
 }

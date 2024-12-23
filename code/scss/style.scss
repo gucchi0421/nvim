@@ -1,4 +1,9 @@
-.hoge{
+.hoge {
   justify-content: center;
   align-items: center;
+
+  &__node {
+    justify-content: center;
+    align-items: center;
+  }
 }

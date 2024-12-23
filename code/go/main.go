@@ -1,5 +1,12 @@
 package main
 
+import (
+	"fmt"
+	"time"
+)
+
 func main() {
-	println("Hello, World!")
+	t := time.Now().Format(time.RFC3339)
+
+	fmt.Println(t)
 }

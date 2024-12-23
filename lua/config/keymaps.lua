@@ -42,19 +42,20 @@ map("i", "<S-Right>", "<Esc>v<Right>", opts)
 map("v", "<BS>", "d<Esc>i", opts)
 
 -- カット＆コピー操作 (操作後Insertモードに切り替え)
-map("v", "<C-x>", "d<Esc>i", opts) -- ビジュアルモード: 選択範囲カット
-map("v", "<C-c>", "y<Esc>i", opts) -- ビジュアルモード: 選択範囲コピー
-map("i", "<C-x>", "<Esc>ddi", opts) -- 挿入モード: 行カット
-map("i", "<C-c>", "<Esc>yyi", opts) -- 挿入モード: 行コピー
+map("v", "<C-x>", "d<Esc>i", opts)   -- ビジュアルモード: 選択範囲カット
+map("v", "<C-c>", "y<Esc>i", opts)   -- ビジュアルモード: 選択範囲コピー
+map("i", "<C-x>", "<Esc>dd$i", opts) -- 挿入モード: 行カット
+map("i", "<C-c>", "<Esc>yy$i", opts) -- 挿入モード: 行コピー
 
 -- 通常モードでカット＆コピー操作後にInsertモードに切り替え
-map("n", "<C-x>", "ddi", opts) -- 通常モード: 行カット
-map("n", "<C-c>", "yyi", opts) -- 通常モード: 行コピー
+map("n", "<C-x>", "dd$i", opts) -- 通常モード: 行カット
+map("n", "<C-c>", "yy$i", opts) -- 通常モード: 行コピー
 
 -- ペースト操作後にInsertモードに切り替え
 map("n", "<C-v>", "p<Esc>i", opts) -- 通常モード: ペースト
 map("v", "<C-v>", "p<Esc>i", opts) -- ビジュアルモード: ペースト
 map("i", "<C-v>", "<Esc>pi", opts) -- 挿入モード: ペースト
+
 -- 行移動
 map("n", "<A-Up>", ":m .-2<CR>==", opts)
 map("n", "<A-Down>", ":m .+1<CR>==", opts)
@@ -64,12 +65,12 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
 map("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 
 -- その他の便利な操作
-map("n", "<C-a>", "ggVG", opts) -- 全選択
+map("n", "<C-a>", "ggVG", opts)   -- 全選択
 map("i", "<C-z>", "<C-o>u", opts) -- 元に戻す
 map("n", "<C-s>", ":w<CR>", opts) -- 保存
 
 -- インデント操作
-map("v", "<Tab>", ">gv", opts) -- 右にインデント
+map("v", "<Tab>", ">gv", opts)   -- 右にインデント
 map("v", "<S-Tab>", "<gv", opts) -- 左にインデント
 
 -- 設定ファイルを開く
