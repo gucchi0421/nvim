@@ -71,16 +71,15 @@ echo $SHELL
 # Oh My Zshのインストール
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# プラグインと設定ファイル追加 **git管理のためシンボリックリンクで対応**
+# 設定ファイル追加 **git管理のためシンボリックリンクで対応**
 # どちらか一方でも削除したり移動すると壊れるので注意
 ln -s /home/user/.config/nvim/symbolic/zsh/.zshrc ~/.zshrc
-ln -s /home/user/.config/nvim/symbolic/.oh-my-zsh/custom ~/.oh-my-zsh/custom
 ls -l ~/.zshrc
-ls -l ~/.oh-my-zsh/custom
 
-# git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-# git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+# プラグイン
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # nvim ~/.zshrc
 # 下記テーマを追加

@@ -40,8 +40,8 @@ return {
                 formatting = {
                     format = function(entry, vim_item)
                         vim_item.menu = ({
-                            nvim_lsp = "[LSP]",
                             luasnip = "[Snippet]",
+                            nvim_lsp = "[LSP]",
                             buffer = "[Buffer]",
                             path = "[Path]",
                         })[entry.source.name]

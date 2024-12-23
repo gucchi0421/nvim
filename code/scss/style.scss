@@ -7,3 +7,10 @@
     align-items: center;
   }
 }
+
+.hoge {
+  &__gofe {
+    text-shadow: none;
+    font-size: 12px;
+  }
+}
