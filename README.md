@@ -35,9 +35,7 @@ git clone --depth=1 https://github.com/folke/lazy.nvim.git ~/.local/share/nvim/l
 ```
 
 Font
-```md
-HackGen_NF_v2.9.1をマシンにインストール後、terminalで設定
-```
+- HackGen_NF_v2.9.1をマシンにインストール後、terminalで設定
 
 
 lazygit
@@ -49,6 +47,10 @@ sudo install lazygit -D -t /usr/local/bin/
 
 # n ~/.config/lazygit/config.yml
 ```
+
+snippets
+
+[https://github.com/honza/vim-snippets/tree/master/snippets](https://github.com/honza/vim-snippets/tree/master/snippets)
 
 
 # Windows

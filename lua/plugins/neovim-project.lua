@@ -3,13 +3,14 @@ return {
         "coffebar/neovim-project",
         opts = {
             projects = { -- define project roots
-                "~/documents/*",
-                "~/documents/functions",
-                "~/documents/services",
-                "~/documents/tools",
-                "~/documents/workspace",
-                "~/documents/zenn",
-                "~/.config/*",
+                "~/documents/functions/*",
+                "~/documents/services/*",
+                "~/documents/tools/*",
+                "~/documents/workspace/*/*",
+                "~/documents/works/*",
+                "~/documents/zenn/*",
+                "~/.config/nvim/",
+                "~/.config/lazygit/",
             },
             picker = {
                 type = "telescope", -- or "fzf-lua"
