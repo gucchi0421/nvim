@@ -24,9 +24,7 @@ return {
         end,
         dependencies = {
             { "nvim-lua/plenary.nvim" },
-            -- optional picker
             { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
-            -- optional picker
             { "ibhagwan/fzf-lua" },
             { "Shatur/neovim-session-manager" },
         },

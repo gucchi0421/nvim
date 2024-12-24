@@ -11,6 +11,9 @@ return {
                     }),
                     null_ls.builtins.formatting.phpcsfixer.with({
                         filetypes = { "php" },
+                        extra_args = {
+                            "--rules=@PSR12,indent_size=2"
+                        }
                     }),
                 },
 

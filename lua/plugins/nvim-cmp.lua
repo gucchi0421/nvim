@@ -1,4 +1,3 @@
--- lua/plugins/nvim-cmp.lua
 return {
     {
         "hrsh7th/nvim-cmp",
@@ -9,41 +8,37 @@ return {
             "hrsh7th/cmp-path",
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip",
+            "hrsh7th/cmp-emoji"
         },
+        event = "InsertEnter",
         config = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
             cmp.setup({
                 completion = {
-                    autocomplete = false, -- 自動補完オフ
+                    autocomplete = false,
                 },
-                -- window = {
-                --     documentation = false -- ドキュメントウィンドウ無効化
-                -- },
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
                     end,
                 },
-                -- mapping = cmp.mapping.preset.insert({
-                --     ["<CR>"] = cmp.mapping.confirm({ select = true }),
-                --     ["<Tab>"] = cmp.mapping.select_next_item(),
-                --     ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-                -- }),
-                -- sources = cmp.config.sources({
-                --     { name = "nvim_lsp" },
-                --     { name = "luasnip" },
-                --     { name = "buffer" },
-                --     { name = "path" },
-                -- }),
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = "luasnip" },
+                    { name = "buffer" },
+                    { name = "path" },
+                    { name = "emoji" },
+                },
                 formatting = {
                     format = function(entry, vim_item)
                         vim_item.menu = ({
-                            luasnip = "[Snippet]",
+                            luasnip = "[SNIPPET]",
                             nvim_lsp = "[LSP]",
-                            buffer = "[Buffer]",
-                            path = "[Path]",
+                            buffer = "[BUFFER]",
+                            path = "[PATH]",
+                            emoji = "[EMOJI]"
                         })[entry.source.name]
                         return vim_item
                     end

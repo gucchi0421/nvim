@@ -78,8 +78,8 @@ return {
                                 analyses = {
                                     unusedparams = true, -- 使用されていないパラメータを検出。
                                     shadow = true, -- 変数のシャドウイング（上書き）を検出。
-                                    fieldalignment = true, -- フィールドのアライメントの最適化を検出。
-                                    nilness = true, -- nil値の不適切な使用を検出。
+                                    fieldalignment = false, -- フィールドのアライメントの最適化を無効化
+                                    nilness = false,       -- nil値の不適切な使用を無効化
                                     useany = true, -- `interface{}`の使用を警告。
                                     unusedwrite = true, -- 使用されていない書き込みを検出。
                                     unusedvariable = true, -- 使用されていない変数を検出。
@@ -88,9 +88,7 @@ return {
                                 },
                                 ui = {
                                     completion = {
-                                        snippets = "top", -- 補完リストにスニペットを上位表示。
                                         instantTextDocument = true, -- ドキュメントを即時表示。
-                                        matcher = "fuzzy", -- 補完候補の曖昧一致を使用。
                                         mocksPreselected = true, -- モックの補完候補を事前選択。
                                         snippets = "inline", -- スニペットをインラインで表示。
                                         matcher = "caseSensitiveFuzzy", -- 大文字小文字を区別した曖昧一致。
@@ -98,7 +96,7 @@ return {
                                     },
                                     diagnostic = {
                                         annotations = true, -- 診断に注釈を表示。
-                                        diagnosticsDelay = "200ms", -- 診断の遅延を200msに設定。
+                                        diagnosticsDelay = "500ms", -- 診断の遅延を200msに設定。
                                     },
                                     navigation = {
                                         importShortcut = "Definition", -- 定義ショートカットをインポートする。
@@ -108,7 +106,7 @@ return {
                                 },
                                 staticcheck = true, -- 高機能なGoの静的解析ツール
                                 usePlaceholders = true, -- プレースホルダー（補完時に埋め込むテンプレート）を有効化
-                                buildFlags = { "-tags=integration,e2e" }, -- goplsに渡すビルドフラグを設定
+                                buildFlags = {},        -- 空に設定
                                 gofumpt = true,
                                 codelenses = {
                                     gc_details = true, -- ガベージコレクションの詳細。
@@ -120,21 +118,20 @@ return {
                                     vendor = true, -- ベンダリング。
                                 },
                                 hints = {
-                                    assignVariableTypes = true, -- 変数割り当ての型を表示。
-                                    compositeLiteralFields = true, -- リテラルフィールドの名前を表示。
-                                    compositeLiteralTypes = true, -- リテラル型を表示。
-                                    constantValues = true, -- 定数の値を表示。
-                                    functionTypeParameters = true, -- 関数の型パラメータを表示。
-                                    parameterNames = true, -- パラメータ名を表示。
-                                    rangeVariableTypes = true, -- 範囲変数の型を表示。
+                                    assignVariableTypes = false, -- 変数割り当ての型を表示しない
+                                    compositeLiteralFields = false, -- リテラルフィールドの名前を表示しない
+                                    compositeLiteralTypes = false, -- リテラル型を表示しない
+                                    constantValues = false, -- 定数の値を表示しない
+                                    parameterNames = true, -- パラメータ名は表示
+                                    rangeVariableTypes = false, -- 範囲変数の型を表示しない
                                 },
                                 semanticTokens = true,
-                                experimentalPostfixCompletions = true,
-                                experimentalWorkspaceModule = true,
-                                experimentalTemplateSupport = true,
+                                experimentalPostfixCompletions = false,
+                                experimentalWorkspaceModule = false,
+                                experimentalTemplateSupport = false,
                                 experimentalDiagnosticsDelay = "200ms",
                                 completeUnimported = true,
-                                deepCompletion = true,
+                                deepCompletion = false,
                                 fuzzyMatching = true,
                                 matcher = "Fuzzy",
                                 symbolMatcher = "fuzzy",

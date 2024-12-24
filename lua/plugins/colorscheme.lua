@@ -1,6 +1,16 @@
 return {
-    -- transparent
     { "xiyaowong/transparent.nvim" },
+
+    -- melange
+    {
+        { "savq/melange-nvim" }
+    },
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "melange",
+        },
+    },
 
     -- everforest
     -- { "neanias/everforest-nvim" },
@@ -24,7 +34,7 @@ return {
     --         colorscheme = "kanagawa-paper",
     --     },
     -- },
-    --
+
     -- sakurajima
     -- {
     --     "Daiki48/sakurajima.nvim",
@@ -34,20 +44,20 @@ return {
     --         vim.cmd([[colorscheme sakurajima]])
     --     end,
     -- },
-    --
+
     -- tokyonight
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "tokyonight-night",
-        },
-    },
+    -- {
+    --     "folke/tokyonight.nvim",
+    --     lazy = false,
+    --     priority = 1000,
+    --     opts = {},
+    -- },
+    -- {
+    --     "LazyVim/LazyVim",
+    --     opts = {
+    --         colorscheme = "tokyonight-night",
+    --     },
+    -- },
 
     -- ayu
     -- {

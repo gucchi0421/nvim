@@ -2,59 +2,62 @@ return {
     'akinsho/toggleterm.nvim',
     version = "*",
     config = function()
-        require("toggleterm").setup {
+        local toggleterm = require("toggleterm")
+
+        -- 基本設定
+        toggleterm.setup({
             size = 20,
-            open_mapping = [[<C-\>]], -- C-/を<C-\>に変更（より安定した動作のため）
-            hide_numbers = true,
-            shade_terminals = true,
-            start_in_insert = true,
-            insert_mappings = true,
-            terminal_mappings = true,
-            persist_size = true,
-            direction = 'float',
-            close_on_exit = true,
+            open_mapping = [[<C-\>]],                      -- C-/をC-\に変更
+            hide_numbers = true,                           -- ターミナルバッファで行番号を非表示
+            shade_terminals = true,                        -- 背景を暗く
+            start_in_insert = true,                        -- 挿入モードで開始
+            insert_mappings = true,                        -- 挿入モードでのキーマッピングを有効
+            terminal_mappings = true,                      -- ターミナルモードでのキーマッピングを有効
+            persist_size = true,                           -- サイズを記憶
+            close_on_exit = true,                          -- 終了時にターミナルを閉じる
+            direction = 'float',                           -- フロート表示
             float_opts = {
-                border = 'curved',
-                winblend = 3,
-                title_pos = 'center',
-                -- 以下を追加
+                border = 'curved',                         -- カーブ型の枠線
+                winblend = 3,                              -- 背景透過
+                title_pos = 'center',                      -- タイトルの位置
                 width = function()
-                    return math.floor(vim.o.columns * 0.9)
+                    return math.floor(vim.o.columns * 0.9) -- 画面幅の90%
                 end,
                 height = function()
-                    return math.floor(vim.o.lines * 0.9)
+                    return math.floor(vim.o.lines * 0.9) -- 画面高さの90%
                 end,
             },
-        }
+        })
 
-        -- lazygitの設定を修正
+        -- lazygit用のターミナル設定
         local Terminal = require('toggleterm.terminal').Terminal
         local lazygit = Terminal:new({
-            cmd = "lazygit",
-            dir = "git_dir",
-            direction = "float",
+            cmd = "lazygit",     -- コマンド
+            dir = "git_dir",     -- 実行ディレクトリ
+            direction = "float", -- フロート表示
             float_opts = {
                 border = "curved",
             },
-            on_open = function(term)
-                vim.cmd("startinsert!") -- インサートモードで開始
+            on_open = function()
+                vim.cmd("startinsert!") -- 挿入モードで開始
             end,
-            on_close = function(term)
-                vim.cmd("checktime")  -- ターミナルが閉じた後にファイルの変更を確認
-                vim.cmd("ToggleTerm") -- 真ん中のターミナル領域を閉じる
+            on_close = function()
+                vim.cmd("checktime") -- ファイルの変更を確認
             end,
         })
 
-        -- グローバル関数として定義
+        -- lazygitをトグルする関数
         _G.lazygit_toggle = function()
             lazygit:toggle()
         end
 
-        -- キーマッピングを設定
+        -- キーマッピング設定
         vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua lazygit_toggle()<CR>", {
             noremap = true,
             silent = true,
         })
+
+        -- ターミナルを閉じるためのキー設定 (Qキー)
         vim.keymap.set('t', 'Q', [[<C-\><C-n>:q<CR>]], { noremap = true, silent = true })
     end
 }

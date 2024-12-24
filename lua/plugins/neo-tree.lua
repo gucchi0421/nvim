@@ -14,10 +14,10 @@ return {
                         -- return require("neo-tree").close_all()
                     end
                 },
+                -- ファイルが追加されたときにファイルシステムをリフレッシュ
                 {
                     event = "file_added",
                     handler = function(file_path)
-                        -- ファイルが追加されたときに明示的に更新
                         require("neo-tree.sources.manager").refresh("filesystem")
                     end
                 },
