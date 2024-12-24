@@ -70,6 +70,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ln -s $HOME/.config/nvim/symbolic/zsh/.zshrc ~/.zshrc
 ls -l ~/.zshrc
 
+# terminalでの画像表示に必要
+echo 'deb [trusted=yes] https://apt.fury.io/ascii-image-converter/ /' | sudo tee /etc/apt/sources.list.d/ascii-image-converter.list
+sudo apt update
+sudo apt install -y ascii-image-converter
+
 # プラグインインストール
 git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
