@@ -13,9 +13,9 @@ return {
                     icons = {
                         package_installed = "✓",
                         package_pending = "➜",
-                        package_uninstalled = "✗"
-                    }
-                }
+                        package_uninstalled = "✗",
+                    },
+                },
             })
 
             require("mason-lspconfig").setup({
@@ -24,8 +24,8 @@ return {
                     "pylsp",
                     "ts_ls",
                     "intelephense",
-                    "cssls"
-                }
+                    "cssls",
+                },
             })
 
             local lspconfig = require("lspconfig")
@@ -76,54 +76,57 @@ return {
                         settings = {
                             gopls = {
                                 analyses = {
-                                    unusedparams = true,   -- 使用されていないパラメータを検出。
-                                    shadow = true,         -- 変数のシャドウイング（上書き）を検出。
+                                    unusedparams = true, -- 使用されていないパラメータを検出。
+                                    shadow = true, -- 変数のシャドウイング（上書き）を検出。
                                     fieldalignment = true, -- フィールドのアライメントの最適化を検出。
-                                    nilness = true,        -- nil値の不適切な使用を検出。
-                                    useany = true,         -- `interface{}`の使用を警告。
-                                    unusedwrite = true,    -- 使用されていない書き込みを検出。
+                                    nilness = true, -- nil値の不適切な使用を検出。
+                                    useany = true, -- `interface{}`の使用を警告。
+                                    unusedwrite = true, -- 使用されていない書き込みを検出。
                                     unusedvariable = true, -- 使用されていない変数を検出。
                                     undeclaredname = true, -- 宣言されていない名前を警告。
-                                    unreachable = true,    -- 到達不能なコードを検出。
+                                    unreachable = true, -- 到達不能なコードを検出。
                                 },
                                 ui = {
                                     completion = {
-                                        snippets = "top",           -- 補完リストにスニペットを上位表示。
+                                        snippets = "top", -- 補完リストにスニペットを上位表示。
                                         instantTextDocument = true, -- ドキュメントを即時表示。
-                                        matcher = "fuzzy",          -- 補完候補の曖昧一致を使用。
-                                        mocksPreselected = true,    -- モックの補完候補を事前選択。
+                                        matcher = "fuzzy", -- 補完候補の曖昧一致を使用。
+                                        mocksPreselected = true, -- モックの補完候補を事前選択。
+                                        snippets = "inline", -- スニペットをインラインで表示。
+                                        matcher = "caseSensitiveFuzzy", -- 大文字小文字を区別した曖昧一致。
+                                        fields = "first", -- フィールドを補完リストの上位に表示。
                                     },
                                     diagnostic = {
-                                        annotations = true,         -- 診断に注釈を表示。
+                                        annotations = true, -- 診断に注釈を表示。
                                         diagnosticsDelay = "200ms", -- 診断の遅延を200msに設定。
                                     },
                                     navigation = {
                                         importShortcut = "Definition", -- 定義ショートカットをインポートする。
-                                        symbolMatcher = "fuzzy",       -- シンボル検索で曖昧一致を使用。
-                                        symbolStyle = "Dynamic",       -- シンボルスタイルを動的に設定。
+                                        symbolMatcher = "fuzzy", -- シンボル検索で曖昧一致を使用。
+                                        symbolStyle = "Dynamic", -- シンボルスタイルを動的に設定。
                                     },
                                 },
-                                staticcheck = true,                       -- 高機能なGoの静的解析ツール
-                                usePlaceholders = true,                   -- プレースホルダー（補完時に埋め込むテンプレート）を有効化
+                                staticcheck = true, -- 高機能なGoの静的解析ツール
+                                usePlaceholders = true, -- プレースホルダー（補完時に埋め込むテンプレート）を有効化
                                 buildFlags = { "-tags=integration,e2e" }, -- goplsに渡すビルドフラグを設定
                                 gofumpt = true,
                                 codelenses = {
-                                    gc_details = true,         -- ガベージコレクションの詳細。
-                                    generate = true,           -- コード生成。
-                                    regenerate_cgo = true,     -- cgoコードの再生成。
-                                    test = true,               -- テスト実行。
-                                    tidy = true,               -- モジュールの整合性チェック。
+                                    gc_details = true, -- ガベージコレクションの詳細。
+                                    generate = true, -- コード生成。
+                                    regenerate_cgo = true, -- cgoコードの再生成。
+                                    test = true, -- テスト実行。
+                                    tidy = true, -- モジュールの整合性チェック。
                                     upgrade_dependency = true, -- 依存関係の更新。
-                                    vendor = true,             -- ベンダリング。
+                                    vendor = true, -- ベンダリング。
                                 },
                                 hints = {
-                                    assignVariableTypes = true,    -- 変数割り当ての型を表示。
+                                    assignVariableTypes = true, -- 変数割り当ての型を表示。
                                     compositeLiteralFields = true, -- リテラルフィールドの名前を表示。
-                                    compositeLiteralTypes = true,  -- リテラル型を表示。
-                                    constantValues = true,         -- 定数の値を表示。
+                                    compositeLiteralTypes = true, -- リテラル型を表示。
+                                    constantValues = true, -- 定数の値を表示。
                                     functionTypeParameters = true, -- 関数の型パラメータを表示。
-                                    parameterNames = true,         -- パラメータ名を表示。
-                                    rangeVariableTypes = true,     -- 範囲変数の型を表示。
+                                    parameterNames = true, -- パラメータ名を表示。
+                                    rangeVariableTypes = true, -- 範囲変数の型を表示。
                                 },
                                 semanticTokens = true,
                                 experimentalPostfixCompletions = true,
@@ -137,8 +140,8 @@ return {
                                 symbolMatcher = "fuzzy",
                                 symbolStyle = "Dynamic",
                                 linkTarget = "pkg.go.dev",
-                                vulncheck = "Imports"
-                            }
+                                vulncheck = "Imports",
+                            },
                         },
                         flags = {
                             debounce_text_changes = 150,
@@ -155,12 +158,12 @@ return {
                                         commitCharactersSupport = true,
                                         documentationFormat = { "markdown", "plaintext" },
                                         insertTextModeSupport = {
-                                            valueSet = { 1, 2 }
-                                        }
-                                    }
-                                }
-                            }
-                        })
+                                            valueSet = { 1, 2 },
+                                        },
+                                    },
+                                },
+                            },
+                        }),
                     }))
                 end,
                 ["pylsp"] = function()
@@ -202,43 +205,43 @@ return {
                             intelephense = {
                                 -- 標準ライブラリやフレームワークのスタブ
                                 stubs = {
-                                    "wordpress",    -- WordPress関連
-                                    "apache",       -- Apache関連
-                                    "curl",         -- cURLライブラリ
-                                    "date",         -- 日付操作
-                                    "mysqli",       -- MySQLi
-                                    "pdo_mysql",    -- PDO (MySQL)
-                                    "standard",     -- PHP標準ライブラリ
-                                    "xml",          -- XML操作
-                                    "json",         -- JSON操作
-                                    "mbstring",     -- マルチバイト文字列
-                                    "Reflection",   -- リフレクションAPI
-                                    "composer",     -- Composerサポート
-                                    "PDO",          -- PDOサポート
-                                    "Core",         -- PHPのコア機能
-                                    "SPL",          -- SPL (Standard PHP Library)
-                                    "pcntl",        -- プロセス制御関連
+                                    "wordpress", -- WordPress関連
+                                    "apache", -- Apache関連
+                                    "curl", -- cURLライブラリ
+                                    "date", -- 日付操作
+                                    "mysqli", -- MySQLi
+                                    "pdo_mysql", -- PDO (MySQL)
+                                    "standard", -- PHP標準ライブラリ
+                                    "xml", -- XML操作
+                                    "json", -- JSON操作
+                                    "mbstring", -- マルチバイト文字列
+                                    "Reflection", -- リフレクションAPI
+                                    "composer", -- Composerサポート
+                                    "PDO", -- PDOサポート
+                                    "Core", -- PHPのコア機能
+                                    "SPL", -- SPL (Standard PHP Library)
+                                    "pcntl", -- プロセス制御関連
                                     "superglobals", -- スーパーグローバル変数補完
                                 },
                                 -- ファイル制限の調整
                                 files = {
-                                    maxSize = 10000000,       -- 10MBに拡大
+                                    maxSize = 10000000, -- 10MBに拡大
                                     exclude = {
-                                        "**/vendor/**",       -- Composerの依存ディレクトリを除外
+                                        "**/vendor/**", -- Composerの依存ディレクトリを除外
                                         "**/node_modules/**", -- Node.jsの依存を除外
-                                        "**/.git/**",         -- Gitディレクトリを除外
+                                        "**/.git/**", -- Gitディレクトリを除外
                                     },
                                 },
                                 -- 診断レベルを強化
                                 diagnostics = {
-                                    enable = true,                -- 診断機能を有効化
-                                    undefinedTypes = true,        -- 未定義型を警告
-                                    undefinedFunctions = true,    -- 未定義関数を警告
-                                    undefinedConstants = true,    -- 未定義定数を警告
-                                    undefinedVariables = true,    -- 未定義変数を警告
-                                    unusedVariables = true,       -- 未使用変数を警告
+                                    enable = true, -- 診断機能を有効化
+                                    undefinedTypes = true, -- 未定義型を警告
+                                    undefinedFunctions = true, -- 未定義関数を警告
+                                    undefinedConstants = true, -- 未定義定数を警告
+                                    undefinedVariables = true, -- 未定義変数を警告
+                                    unusedVariables = true, -- 未使用変数を警告
                                     parameterTypeMismatch = true, -- 引数の型ミスマッチを警告
-                                    returnTypeMismatch = true,    -- 戻り値の型ミスマッチを警告
+                                    returnTypeMismatch = true, -- 戻り値の型ミスマッチを警告
                                 },
                                 -- PHP環境設定
                                 environment = {
@@ -247,7 +250,7 @@ return {
                                 -- 補完のカスタマイズ
                                 completion = {
                                     fullyQualifyGlobalConstantsAndFunctions = true, -- 完全修飾名で補完
-                                    triggerParameterHints = true,                   -- 引数ヒントをトリガー
+                                    triggerParameterHints = true, -- 引数ヒントをトリガー
                                 },
                                 -- フォーマットの有効化
                                 format = {
@@ -293,9 +296,9 @@ return {
                                 },
                                 completion = {
                                     completePropertyWithSemicolon = true, -- プロパティ補完時にセミコロンを追加
-                                    completePropertyWithComma = true,     -- プロパティ補完時にカンマを追加
+                                    completePropertyWithComma = true, -- プロパティ補完時にカンマを追加
                                 },
-                                validate = true,                          -- CSSバリデーションを有効化
+                                validate = true, -- CSSバリデーションを有効化
                             },
                             scss = {
                                 validate = true, -- SCSSバリデーションを有効化
@@ -322,10 +325,10 @@ return {
                 end,
             })
             -- LSPの自動起動
-            vim.api.nvim_create_autocmd('FileType', {
-                pattern = { 'go', 'python', 'typescript', 'php', 'css', 'scss' },
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = { "go", "python", "typescript", "php", "css", "scss" },
                 callback = function()
-                    vim.cmd('LspStart')
+                    vim.cmd("LspStart")
                 end,
             })
         end,

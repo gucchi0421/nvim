@@ -24,30 +24,30 @@ return {
     --         colorscheme = "kanagawa-paper",
     --     },
     -- },
-
+    --
     -- sakurajima
-    {
-        "Daiki48/sakurajima.nvim",
-        lazy = false,
-        branch = "main",
-        config = function()
-            vim.cmd([[colorscheme sakurajima]])
-        end,
-    },
-
-    -- tokyonight
     -- {
-    --     "folke/tokyonight.nvim",
+    --     "Daiki48/sakurajima.nvim",
     --     lazy = false,
-    --     priority = 1000,
-    --     opts = {},
+    --     branch = "main",
+    --     config = function()
+    --         vim.cmd([[colorscheme sakurajima]])
+    --     end,
     -- },
-    -- {
-    --     "LazyVim/LazyVim",
-    --     opts = {
-    --         colorscheme = "tokyonight-night",
-    --     },
-    -- },
+    --
+    -- tokyonight
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "tokyonight-night",
+        },
+    },
 
     -- ayu
     -- {

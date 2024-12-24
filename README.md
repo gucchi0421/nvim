@@ -57,47 +57,48 @@ ls -l ~/.config/lazygit/config.yml
 ## Sh
 ```sh
 # zshのインストール
+# 実行後一回terminal再起動
 sudo apt update
 sudo apt install zsh
-
 chsh -s $(which zsh)
-
-# 一回terminal再起動
-
-# シェルのインストールパスが出ればOK
-echo $SHELL
-> /usr/bin/zsh
 
 # Oh My Zshのインストール
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # 設定ファイル追加 **git管理のためシンボリックリンクで対応**
 # どちらか一方でも削除したり移動すると壊れるので注意
-ln -s /home/user/.config/nvim/symbolic/zsh/.zshrc ~/.zshrc
+ln -s $HOME/.config/nvim/symbolic/zsh/.zshrc ~/.zshrc
 ls -l ~/.zshrc
 
-# プラグイン
+# プラグインインストール
 git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
+# シンボリックリンク設定していれば下記不要
 # nvim ~/.zshrc
+
 # 下記テーマを追加
 # ZSH_THEME="robbyrussell"
-# 下記プラグインを追加
-# plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting web-search)
-
-# もう一回インストールしてzshにパスを通す
-~/.fzf/install
-
-source ~/.zshrc
 
 # themeの設定をやり直したいとき
 # p10k configure
+
+# 下記プラグインを追加
+# plugins=(git docker zsh-autosuggestions zsh-syntax-highlighting web-search)
+
+sudo apt update
+sudo apt install locales
+sudo locale-gen ja_JP.UTF-8
+sudo update-locale LANG=ja_JP.UTF-8
+locale
+
+source ~/.zshrc
 ```
 
 ## シェル変更でBashのパス消えるかも
 ```
+~/.fzf/install
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b ~/.local/bin
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
