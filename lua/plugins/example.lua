@@ -5,7 +5,6 @@ if true then return {} end
 return {
     -- add gruvbox
     { "ellisonleao/gruvbox.nvim" },
-
     -- Configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
@@ -28,5 +27,4 @@ return {
 
     -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
     { import = "lazyvim.plugins.extras.lang.json" },
-
 }

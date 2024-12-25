@@ -11,3 +11,4 @@ vim.opt.clipboard = "unnamedplus" -- コピペを有効化
 vim.opt.swapfile = false          -- スワップファイルを生成しない
 vim.opt.guicursor = "n-i:ver25"   -- フォーカスしている行を太字にする
 vim.opt.termguicolors = true      -- 24ビットカラー
+vim.opt.spelllang = "en,cjk"      -- 日本語のスペルチェック

@@ -25,7 +25,7 @@ return {
                 "toml",
                 "prisma",
             },
-            indent = { enable = true }, -- インデントを有効化
+            indent = { enable = true },
         },
     },
 }

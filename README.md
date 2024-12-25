@@ -118,3 +118,19 @@ nvim -v
 cd $env:LOCALAPPDATA\
 git clone https://github.com/gucchi0421/nvim.git
 ```
+
+## SSH
+まず.sshをコピペして、適切なルートとパス形式に変更
+\ ←これは右に変更 /
+C: ←これは/home/{USERNAME}/
+```sh
+# 権限付与
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/*
+# 改行コード修正
+find ~/.ssh -type f -exec sed -i 's/\r$//' {} +
+# ^Mが消えていればOK
+cat -A ~/.ssh/*
+# テスト
+ssh -i ~/.ssh/id_ed25519 -p 10022 webchecker4@sv14937.xserver.jp
+```
