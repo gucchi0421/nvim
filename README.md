@@ -49,6 +49,13 @@ ln -s /home/user/.config/nvim/symbolic/lazygit/config.yml ~/.config/lazygit/conf
 ls -l ~/.config/lazygit/config.yml
 ```
 
+## LazyDocker
+```
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+git clone https://github.com/jesseduffield/lazydocker.git
+echo "alias lzd='lazydocker'" >> ~/.zshrc
+```
+
 ## Snippets
 
 [https://github.com/honza/vim-snippets/tree/master/snippets](https://github.com/honza/vim-snippets/tree/master/snippets)

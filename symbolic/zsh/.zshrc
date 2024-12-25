@@ -130,3 +130,5 @@ export EDITOR='nvim'
 function cd() {
   builtin cd "$@" && ls
 }
+
+alias lzd='lazydocker'

@@ -12,7 +12,7 @@ func h(s string) (string, error) {
 	return trim, nil
 }
 
-func main() {
+func MAIN() {
 	t := time.Now().Format(time.RFC3339)
 
 	tt, err := h(t)

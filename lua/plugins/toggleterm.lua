@@ -1,3 +1,7 @@
+vim.cmd([[
+  autocmd TermOpen * setlocal winhighlight=Normal:Normal
+]])
+
 return {
     'akinsho/toggleterm.nvim',
     version = "*",
@@ -7,42 +11,57 @@ return {
         -- 基本設定
         toggleterm.setup({
             size = 20,
-            open_mapping = [[<C-\>]],                      -- C-/をC-\に変更
-            hide_numbers = true,                           -- ターミナルバッファで行番号を非表示
-            shade_terminals = true,                        -- 背景を暗く
-            start_in_insert = true,                        -- 挿入モードで開始
-            insert_mappings = true,                        -- 挿入モードでのキーマッピングを有効
-            terminal_mappings = true,                      -- ターミナルモードでのキーマッピングを有効
-            persist_size = true,                           -- サイズを記憶
-            close_on_exit = true,                          -- 終了時にターミナルを閉じる
-            direction = 'float',                           -- フロート表示
+            open_mapping = [[<C-\>]],
+            hide_numbers = true,
+            shade_terminals = false, -- 背景を暗くする機能を無効化
+            start_in_insert = true,
+            insert_mappings = true,
+            terminal_mappings = true,
+            persist_size = true,
+            close_on_exit = true,
+            direction = 'float',
             float_opts = {
-                border = 'curved',                         -- カーブ型の枠線
-                winblend = 3,                              -- 背景透過
-                title_pos = 'center',                      -- タイトルの位置
+                border = 'curved',
+                winblend = 0, -- 背景透過を完全無効化
+                title_pos = 'center',
                 width = function()
-                    return math.floor(vim.o.columns * 0.9) -- 画面幅の90%
+                    return math.floor(vim.o.columns * 0.9)
                 end,
                 height = function()
-                    return math.floor(vim.o.lines * 0.9) -- 画面高さの90%
+                    return math.floor(vim.o.lines * 0.9)
                 end,
             },
         })
 
-        -- lazygit用のターミナル設定
         local Terminal = require('toggleterm.terminal').Terminal
+
+        -- lazygit用のターミナル設定
         local lazygit = Terminal:new({
-            cmd = "lazygit",     -- コマンド
-            dir = "git_dir",     -- 実行ディレクトリ
-            direction = "float", -- フロート表示
+            cmd = "lazygit",
+            dir = "git_dir",
+            direction = "float",
             float_opts = {
-                border = "curved",
+                winblend = 0, -- 背景透過を完全に無効化
             },
-            on_open = function()
-                vim.cmd("startinsert!") -- 挿入モードで開始
+            on_open = function(term)
+                vim.cmd("setlocal winhighlight=Normal:Normal,FloatBorder:Normal")
+                vim.cmd("startinsert!")
             end,
             on_close = function()
-                vim.cmd("checktime") -- ファイルの変更を確認
+                vim.cmd("checktime")
+            end,
+        })
+
+        -- lazydocker用のターミナル設定
+        local lazydocker = Terminal:new({
+            cmd = "lazydocker",
+            direction = "float",
+            float_opts = {
+                winblend = 0, -- 背景透過を完全に無効化
+            },
+            on_open = function(term)
+                vim.cmd("setlocal winhighlight=Normal:Normal,FloatBorder:Normal")
+                vim.cmd("startinsert!")
             end,
         })
 
@@ -51,13 +70,23 @@ return {
             lazygit:toggle()
         end
 
+        -- lazydockerをトグルする関数
+        _G.lazydocker_toggle = function()
+            lazydocker:toggle()
+        end
+
         -- キーマッピング設定
         vim.api.nvim_set_keymap("n", "<leader>gg", "<cmd>lua lazygit_toggle()<CR>", {
             noremap = true,
             silent = true,
         })
 
-        -- ターミナルを閉じるためのキー設定 (Qキー)
+        vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>lua lazydocker_toggle()<CR>", {
+            noremap = true,
+            silent = true,
+        })
+
+        -- ターミナルを閉じるためのキー設定
         vim.keymap.set('t', 'Q', [[<C-\><C-n>:q<CR>]], { noremap = true, silent = true })
     end
 }

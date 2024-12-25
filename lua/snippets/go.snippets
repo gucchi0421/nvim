@@ -278,3 +278,8 @@ snippet errwr "Error handling with fmt.Errorf"
 	if ${1}err != nil {
 		return fmt.Errorf("${2} %w", err)
 	}
+
+snippet iferr "Error handling"
+	if err != nil {
+		${1}
+	}
