@@ -1,4 +1,10 @@
 return {
+    -- {
+    --     "ray-x/lsp_signature.nvim",
+    --     opts = {
+    --         toggle_key = "<A-p>",
+    --     },
+    -- },
     {
         "hrsh7th/nvim-cmp",
         enabled = true,

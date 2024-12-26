@@ -1,3 +1,59 @@
+local keys = "" -- 入力されたキーシーケンスを保存
+
+-- キー入力を監視する関数
+local function key_logger(char)
+    local key = vim.fn.keytrans(char) -- キー入力を文字列に変換
+
+    -- 無視するキーパターンをより詳細に定義
+    local ignore_patterns = {
+        "^<.*Mouse.*>",   -- すべてのマウス関連イベント
+        "^<.*Scroll.*>",  -- すべてのスクロール関連イベント
+        "^<.*Drag.*>",    -- ドラッグ関連イベント
+        "^<.*Release.*>", -- リリース関連イベント
+        "^<.*Click.*>",   -- クリック関連イベント
+        "^<.*-.*-.*>",    -- 複数の修飾キーを含むもの
+        "^<F%d+>",        -- ファンクションキー
+        "^<.*Tab>",       -- タブ関連
+        "^<BS>",          -- バックスペース
+        "^<Del>",         -- デリート
+        "^<Home>",        -- Home
+        "^<End>",         -- End
+        "^<Insert>",      -- Insert
+        "^<PageUp>",      -- PageUp
+        "^<PageDown>",    -- PageDown
+        "^<CR>",          -- Enter
+        "^<Space>",       -- スペース
+        "^<[CS]-%a>",     -- Ctrl-やShift-で始まる単文字
+    }
+
+    -- EscやCtrl+Cでリセット
+    if key == "<Esc>" or key == "<C-c>" then
+        keys = ""
+        return
+    end
+
+    -- 定義したパターンに一致するキーは無視
+    for _, pattern in ipairs(ignore_patterns) do
+        if key:match(pattern) then
+            return
+        end
+    end
+
+    -- 最新のキーをシーケンスに追加
+    if #key > 0 then
+        keys = keys .. " " .. key
+    end
+
+    -- 最大3つに制限
+    local key_list = vim.split(keys, " ", { trimempty = true })
+    if #key_list > 5 then
+        keys = table.concat(vim.list_slice(key_list, #key_list - 2, #key_list), " ")
+    end
+end
+
+-- キーイベントをキャプチャ
+vim.on_key(key_logger)
+
 return {
     {
         "nvim-tree/nvim-web-devicons",
@@ -37,7 +93,7 @@ return {
                         {
                             'branch',
                             icon = ''
-                         },
+                        },
                         -- Git差分
                         {
                             'diff',
@@ -60,12 +116,12 @@ return {
                             end,
                         },
                         -- 現在のアクティブなバッファ数
-                        {
-                            function()
-                                local buffers = #vim.fn.getbufinfo({ buflisted = 1 })
-                                return '📁 BUFFER: ' .. buffers
-                            end,
-                        },
+                        -- {
+                        --     function()
+                        --         local buffers = vim.fn.getbufinfo({ buflisted = 1 })
+                        --         return '📁 BUFFER: ' .. buffers
+                        --     end,
+                        -- },
                         -- ファイルサイズ
                         {
                             function()
@@ -96,14 +152,22 @@ return {
 
                     -- 右側:
                     lualine_x = {
-
+                        {
+                            function()
+                                if keys == "" then
+                                    return "KEY: N/A"
+                                end
+                                return "KEY: " .. keys
+                            end,
+                            color = { fg = '#fa8072' }
+                        },
                         {
                             function()
                                 local handle = io.popen("grep 'cpu MHz' /proc/cpuinfo | awk '{print $4}' | head -n 1")
                                 if handle then
                                     local cpu_mhz = handle:read("*a")
                                     handle:close()
-                                    return cpu_mhz and ('⚙️  CPU: ' .. string.format('%.0f MHz', tonumber(cpu_mhz))) or
+                                    return cpu_mhz and ('⚙️  CPU: ' .. string.format('%.0fMHz', tonumber(cpu_mhz))) or
                                         ''
                                 end
                                 return ''
@@ -129,7 +193,7 @@ return {
                     },
                     -- 右中央:
                     lualine_y = {
-                        'encoding',
+                        -- 'encoding',
                     },
                     -- 右端:
                     lualine_z = {

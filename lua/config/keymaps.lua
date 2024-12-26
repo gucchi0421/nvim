@@ -7,6 +7,7 @@ local opts = { noremap = true, silent = true }
 ---------------------------
 -- モード切り替え
 map("i", "jj", "<Esc>", opts) -- インサートモードから抜ける
+map("i", "ｊｊ", "<Esc>", opts) -- インサートモードから抜ける
 
 -- ファイル操作
 map("n", "<C-s>", ":w<CR>", opts)            -- 保存

@@ -11,7 +11,7 @@ return {
         event = "VeryLazy",
         opts = {
             enabled = true,
-            message_template = " <author> • <summary> • <date>",
+            message_template = " <author> / <summary> / <date>",
             date_format = "%Y-%m-%d %H:%M",
             virtual_text_column = 1,
         },

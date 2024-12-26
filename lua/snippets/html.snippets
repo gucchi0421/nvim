@@ -121,44 +121,23 @@ snippet width
 # Elements
 snippet a
 	<a href="${1:#}">${0:$1}</a>
-snippet a.
+snippet ac
 	<a class="${1}" href="${2:#}">${0:$1}</a>
-snippet a#
+snippet ai
 	<a id="${1}" href="${2:#}">${0:$1}</a>
 snippet a:ext
 	<a href="http://${1:example.com}">${0:$1}</a>
 snippet a:mail
 	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${0:email me}</a>
-snippet ac
-	<a href="`@+`">${0:`@+`}</a>
-snippet abbr
-	<abbr title="${1}">${0}</abbr>
-snippet address
-	<address>
-		${0}
-	</address>
-snippet area
-	<area shape="${1:rect}" coords="${2}" href="${3}" alt="${0}">
-snippet area+
-	<area shape="${1:rect}" coords="${2}" href="${3}" alt="${4}">
-	area+
-snippet area:c
-	<area shape="circle" coords="${1}" href="${2}" alt="${0}">
-snippet area:d
-	<area shape="default" coords="${1}" href="${2}" alt="${0}">
-snippet area:p
-	<area shape="poly" coords="${1}" href="${2}" alt="${0}">
-snippet area:r
-	<area shape="rect" coords="${1}" href="${2}" alt="${0}">
 snippet article
 	<article>
 		${0}
 	</article>
-snippet article.
+snippet articlec
 	<article class="${1}">
 		${0}
 	</article>
-snippet article#
+snippet articlei
 	<article id="${1}">
 		${0}
 	</article>
@@ -166,11 +145,11 @@ snippet aside
 	<aside>
 		${0}
 	</aside>
-snippet aside.
+snippet asidec
 	<aside class="${1}">
 		${0}
 	</aside>
-snippet aside#
+snippet asidei
 	<aside id="${1}">
 		${0}
 	</aside>
@@ -200,9 +179,8 @@ snippet br
 	<br>
 snippet button
 	<button type="${1:submit}">${0}</button>
-snippet button.
+snippet buttonc
 	<button class="${1:button}" type="${2:submit}">${0}</button>
-snippet buttont">${0}</button>
 snippet canvas
 	<canvas>
 		${0}
@@ -213,7 +191,7 @@ snippet cite
 	<cite>${0}</cite>
 snippet code
 	<code>${0}</c</dd>
-snippet dd#
+snippet ddi
 	<dd id="${1}">${0}</dd>
 snippet del
 	<del>${0}</del>
@@ -243,24 +221,14 @@ snippet form.
 		${0}
 	</form>
 {1}">${0}</h5>
-snippet h5#
+snippet h5i
 	<h5 id="${1}">${0}</h5>
 snippet h6
 	<h6>${0}</h6>
-snippet h6.
+snippet h6c
 	<h6 class="${1}">${0}</h6>
-snippet h6#
+snippet h6i
 	<h6 id="${1}">${0}</h6>
-snippet head
-	<head>
-		<meta charset="utf-8">
-
-		<title>${1:`substitute(vim_snippets#>
-		</head>
-		<body>
-			$0
-		</body>
-	</html>
 snippet html5l
 	<!DOCTYPE html>
 	<html lang="${1:en}">
@@ -298,14 +266,8 @@ snippet input:submit
 	<input type="submit" name="${1}" id="${2:$1}" value="${3}">
 snippet input:hidden
 	<input type="hidden" name="${1}" id="${2:$1}" value="${3}${1}">${0}</li>
-snippet li+
-	<li>${1}</li>
-	li+
 snippet lia
 	<li><a href="${0:#}">${1}</a></li>
-snippet lia+
-	<li><a href="${2:#}">${1}</a></li>
-	lia+
 snippet link
 	<link rel="${1}" href="${2}" title="${3}" type="${4}">
 snippet link:atom
@@ -318,20 +280,10 @@ snippet meta:d
 	<meta name="description" content="${0}">
 snippet meta:compat
 	<meta http-equiv="X-UA-Compatible" content="IE=${1:7,8,edge}">
-snippet meta:refresh
-	<meta http-e"${1:movie.mov}"
-			width="${2:320}" height="${3:240}"
-			controller="${4:true}" autoplay="${5:true}"
-			scale="tofit" cache="true"
-			pluginspage="http://www.apple.com/quicktime/download/">
-	</object>
 snippet ol
 	<ol>
 		${0}
 	</ol>
-snippet<ruby>
-		<rp><rt>${0}</rt></rp>
-	</ruby>
 snippet s
 	<s>${0}</s>
 snippet samp
@@ -346,11 +298,10 @@ snippet scripts
 	<script src="${0}.js"></script>{1}" type="${2}" media="${0}">
 snippet span
 	<span>${0}</span>
-snippet span.
+snippet spanc
 	<span class="${1}">${0}</span>
-snippet span#
+snippet spani
 	<span id="${1}">${0}</span>
-snippet 0}
 snippet textarea
 	<textarea name="${1}" id="${2:$1}" rows="${3:8}" cols="${4:40}">${5}</textarea>
 snippet tfoot
@@ -359,13 +310,10 @@ snippet tfoot
 	</tfoot>
 snippet th
 	<th>${0}</th>
-snippet th.
+snippet thc
 	<th class="${1}">${0}</th>
-snippet th#
+snippet thi
 	<th id="${1}">${0}</th>
-snippet th+
-	<th>${1}</th>
-	th+${0}
 snippet thead
 	<thead>
 		${0}
@@ -389,18 +337,13 @@ snippet ul
 	<ul>
 		${0}
 	</ul>
-snippet ul.
+snippet ulc
 	<ul class="${1}">
 		${0}
 	</ul>
-snippet ul#
+snippet uli
 	<ul id="${1}">
 		${0}
-	</ul>
-snippet ul+
-	<ul>
-		<li>${1}</li>
-		li+${0}
 	</ul>
 snippet var
 	<var>${0}</var>
@@ -429,11 +372,11 @@ snippet table
 	<table>
 		${0}
 	</table>
-snippet table.
+snippet tablec
 	<table class="${1}">
 		${0}
 	</table>
-snippet table#
+snippet tablei
 	<table id="${1}">
 		${0}
 	</table>
@@ -443,13 +386,10 @@ snippet tbody
 	</tbody>
 snippet td
 	<td>${0}</td>
-snippet td.
+snippet tdc
 	<td class="${1}">${0}</td>
-snippet td#
+snippet tdi
 	<td id="${1}">${0}</td>
-snippet td+
-	<td>${1}</td>
-	td+${
 snippet scriptt
 	<script type="${1}" id="${2}">
 		${0}
@@ -460,11 +400,11 @@ snippet section
 	<section>
 		${0}
 	</section>
-snippet section.
+snippet sectionc
 	<section class="${1}">
 		${0}
 	</section>
-snippet section#
+snippet sectioni
 	<section id="${1}">
 		${0}
 	</section>
@@ -472,14 +412,9 @@ snippet select
 	<select name="${1}" id="${2:$1}">
 		${0}
 	</select>
-snippet select.
+snippet selectc
 	<select name="${1}" id="${2:$1}" class="${3}>
 		${0}
-	</select>
-snippet select+
-	<select name="${1}" id="${2:$1}">
-		<option value="${3}">${4:$3}</option>
-		opt+${0}
 	</select>
 snippet small
 	<small>${0}</small>
@@ -488,20 +423,12 @@ snippet source
 	<ol class="${1}">
 		${0}
 	</ol>
-snippet ol#
+snippet oli
 	<ol id="${1}">
 		${0}
 	</ol>
-snippet ol+
-	<ol>
-		<li>${1}</li>
-		li+${0}
-	</ol>
 snippet opt
 	<option value="${1}">${0:$1}</option>
-snippet opt+
-	<option value="${1}">${2:$1}</option>
-	opt+${0}
 snippet optt
 	<option>${0}</option>
 snippet optgroup
@@ -513,9 +440,9 @@ snippet output
 	<output>${0}</output>
 snippet p
 	<p>${0}</p>
-snippet p.
+snippet pc
 	<p class="${1}">${0}</p>
-snippet p#
+snippet pi
 	<p id="${1}">${0}</p>
 snippet param
 	<param name="${1}" value="${2}">
@@ -543,11 +470,11 @@ snippet nav
 	<nav>
 		${0}
 	</nav>
-snippet nav.
+snippet navc
 	<nav class="${1}">
 		${0}
 	</nav>
-snippet nav#
+snippet navi
 	<nav id="${1}">
 		${0}
 	</nav>
@@ -580,22 +507,6 @@ snippet main
 	<main role="main">
 		${0}
 	</main>
-snippet map
-	<map name="${1}">
-		${0}
-	</map>
-snippet map.
-	<map class="${1}" name="${2}">
-		${0}
-	</map>
-snippet map#
-	<map name="${1}" id="${2:$1}>
-		${0}
-	</map>
-snippet map+
-	<map name="${1}">
-		<area shape="${2}" coords="${3}" href="${4}" alt="${5}" />${6}
-	</map>
 snippet mark
 	<mark>${0}</mark>
 snippet menu
@@ -668,39 +579,25 @@ snippet legend
 snippet legend+
 	<legend><span>${0}</span></legend>
 snippet li
-	<li>${0}</li>
-snippet li.
-	<li class="Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
-		${0}
-	</head>
+	<li>
+        ${0}
+    </li>
 snippet header
 	<header>
 		${0}
 	</header>
-snippet header.
+snippet headerc
 	<header class="${1}">
 		${0}
 	</header>
-snippet header#
+snippet headeri
 	<header id="${1}">
 		${0}
 	</header>
-snippet hgroup
-	<hgroup>
-		${0}
-	</hgroup>
-snippet hgroup.
-	<hgroup class="${1}>
-		${0}
-	</hgroup>
 snippet hr
 	<hr>
 snippet html
 	<html>
-	${0}
-	</html>
-snippet xhtml
-	<html xmlns="http://www.w3.org/1999/xhtml">
 	${0}
 	</html>
 snippet html5
@@ -714,45 +611,70 @@ snippet html5
 		${0}
 	</form>
 snippet h1
-	<h1>${0}</h1>
-snippet h1.
-	<h1 class="${1}">${0}</h1>
-snippet h1#
-	<h1 id="${1}">${0}</h1>
+	<h1>
+		${0}
+	</h1>
+snippet h1c
+	<h1 class="${1}">
+		${0}
+	</h1>
+snippet h1i
+	<h1 id="${1}">
+		${0}
+	</h1>
+
 snippet h2
-	<h2>${0}</h2>
-snippet h2.
-	<h2 class="${1}">${0}</h2>
-snippet h2#
-	<h2 id="${1}">${0}</h2>
+	<h2>
+		${0}
+	</h2>
+snippet h2c
+	<h2 class="${1}">
+		${0}
+	</h2>
+snippet h2i
+	<h2 id="${1}">
+		${0}
+	</h2>
+
 snippet h3
-	<h3>${0}</h3>
-snippet h3.
-	<h3 class="${1}">${0}</h3>
-snippet h3#
-	<h3 id="${1}">${0}</h3>
+	<h3>
+		${0}
+	</h3>
+snippet h3c
+	<h3 class="${1}">
+		${0}
+	</h3>
+snippet h3i
+	<h3 id="${1}">
+		${0}
+	</h3>
+
 snippet h4
-	<h4>${0}</h4>
-snippet h4.
-	<h4 class="${1}">${0}</h4>
-snippet h4#
-	<h4 id="${1}">${0}</h4>
+	<h4>
+		${0}
+	</h4>
+snippet h4c
+	<h4 class="${1}">
+		${0}
+	</h4>
+snippet h4i
+	<h4 id="${1}">
+		${0}
+	</h4>
+
 snippet h5
-	<h5>${0}</h5>
-snippet h5.
-	<h5 class="$ class="${1}">
+	<h5>
 		${0}
-	</fieldset>
-snippet fieldset#
-	<fieldset id="${1}">
+	</h5>
+snippet h5c
+	<h5 class="${1}">
 		${0}
-	</fieldset>
-snippet fieldset+
-	<fieldset>
-		<legend><span>${1}</span></legend>
-		${2}
-	</fieldset>
-	fieldset+${0}
+	</h5>
+snippet h5i
+	<h5 id="${1}">
+		${0}
+	</h5>
+
 snippet figcaption
 	<figcaption>${0}</figcaption>
 snippet figure
@@ -783,11 +705,11 @@ snippet div
 	<div>
 		${0}
 	</div>
-snippet div.
+snippet divc
 	<div class="${1}">
 		${0}
 	</div>
-snippet div#
+snippet divi
 	<div id="${1}">
 		${0}
 	</div>
@@ -795,11 +717,11 @@ snippet dl
 	<dl>
 		${0}
 	</dl>
-snippet dl.
+snippet dlc
 	<dl class="${1}">
 		${0}
 	</dl>
-snippet dl#
+snippet dli
 	<dl id="${1}">
 		${0}
 	</dl>
@@ -811,13 +733,10 @@ snippet dl+
 	</dl>
 snippet dt
 	<dt>${0}</dt>
-snippet dt.
+snippet dtc
 	<dt class="${1}">${0}</dt>
-snippet dt#
+snippet dti
 	<dt id="${1}">${0}</dt>
-snippet dt+
-	<dt>${1}</dt>
-	<dd>${2}</ddode>
 snippet col
 	<col>
 snippet colgroup
@@ -849,7 +768,7 @@ snippet datatemplate
 	</datatemplate>
 snippet dd
 	<dd>${0}</dd>
-snippet dd.
+snippet ddc
 	<dd class="${1}">${0}#
 	<button id="${1}" type="${2:submit}">${0}</button>
 snippet button:s
