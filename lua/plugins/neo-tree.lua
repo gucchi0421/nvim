@@ -45,7 +45,7 @@ return {
             },
             window = {
                 position = "left",
-                width = 35,
+                width = 32,
             },
             source_selector = {
                 winbar = true,

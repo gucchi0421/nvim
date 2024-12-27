@@ -220,6 +220,7 @@ return {
                                     "SPL",          -- SPL (Standard PHP Library)
                                     "pcntl",        -- プロセス制御関連
                                     "superglobals", -- スーパーグローバル変数補完
+                                    "laravel",      -- Laravel関連
                                 },
                                 -- ファイル制限の調整
                                 files = {
@@ -243,7 +244,7 @@ return {
                                 },
                                 -- PHP環境設定
                                 environment = {
-                                    phpVersion = "8.1", -- 使用するPHPバージョン
+                                    phpVersion = "8.2", -- 使用するPHPバージョン
                                 },
                                 -- 補完のカスタマイズ
                                 completion = {

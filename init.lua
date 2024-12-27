@@ -4,7 +4,7 @@ require("config.autocmds")
 require("luasnip.loaders.from_snipmate").load({ paths = "~/.config/nvim/lua/snippets/" })
 
 vim.o.winbar =
-"%#WinBarPath#  %{getcwd()}/%{expand('%:p:.')}%=[ %{&fileencoding != '' ? &fileencoding : 'utf-8'} ] [ %{&fileformat != '' ? &fileformat : 'unix'} ]  "
+"%#WinBarPath# ./%{expand('%:p:.')}%=[ %{&fileencoding != '' ? &fileencoding : 'utf-8'} ] [ %{&fileformat != '' ? &fileformat : 'unix'} ]  "
 
 vim.cmd([[
 highlight WinBarPath guifg=#606060 guibg=#1c1c1c
