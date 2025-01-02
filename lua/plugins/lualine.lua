@@ -127,7 +127,7 @@ return {
                             function()
                                 local size = vim.fn.getfsize(vim.fn.expand('%:p'))
                                 if size < 0 then return '📁 SIZE: N/A' end
-                                return string.format('📁 SIZE: %.1f KB', size / 1024)
+                                return string.format('📁 SIZE: %.1fKB', size / 1024)
                             end,
                         },
                         -- 総行数
@@ -155,9 +155,9 @@ return {
                         {
                             function()
                                 if keys == "" then
-                                    return "KEY: N/A"
+                                    return ""
                                 end
-                                return "KEY: " .. keys
+                                return keys
                             end,
                             color = { fg = '#fa8072' }
                         },

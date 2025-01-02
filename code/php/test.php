@@ -1,6 +1,7 @@
 <?php
 
-function test()
+function test(): DateTime
 {
     $hoge = new DateTime();
+    return $hoge;
 }

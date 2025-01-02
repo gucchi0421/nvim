@@ -9,3 +9,7 @@ class Main:
 def main():
     my = Main("unti")
     my.echo()
+
+
+if __name__ == "__main__":
+    main()

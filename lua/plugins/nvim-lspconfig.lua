@@ -224,21 +224,14 @@ return {
                                 },
                                 -- ファイル制限の調整
                                 files = {
-                                    maxSize = 10000000,       -- 10MBに拡大
+                                    maxSize = 10000000, -- 10MBに拡大
                                     exclude = {
-                                        "**/vendor/**",       -- Composerの依存ディレクトリを除外
-                                        "**/node_modules/**", -- Node.jsの依存を除外
-                                        "**/.git/**",         -- Gitディレクトリを除外
+                                        "**/.git/**",   -- Gitディレクトリを除外
                                     },
                                 },
                                 -- 診断レベルを強化
                                 diagnostics = {
                                     enable = true,                -- 診断機能を有効化
-                                    undefinedTypes = true,        -- 未定義型を警告
-                                    undefinedFunctions = true,    -- 未定義関数を警告
-                                    undefinedConstants = true,    -- 未定義定数を警告
-                                    undefinedVariables = true,    -- 未定義変数を警告
-                                    unusedVariables = true,       -- 未使用変数を警告
                                     parameterTypeMismatch = true, -- 引数の型ミスマッチを警告
                                     returnTypeMismatch = true,    -- 戻り値の型ミスマッチを警告
                                 },
@@ -250,10 +243,6 @@ return {
                                 completion = {
                                     fullyQualifyGlobalConstantsAndFunctions = true, -- 完全修飾名で補完
                                     triggerParameterHints = true,                   -- 引数ヒントをトリガー
-                                },
-                                -- フォーマットの有効化
-                                format = {
-                                    enable = true, -- LSPによるフォーマットを有効化
                                 },
                             },
                         },

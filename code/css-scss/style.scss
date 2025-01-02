@@ -18,3 +18,16 @@
 .test {
   text-align: center;
 }
+
+.hoge {
+  &__heko {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      &::before {
+        content: "";
+      }
+    }
+  }
+}
