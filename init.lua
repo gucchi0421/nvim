@@ -3,12 +3,13 @@ require("config.lazy")
 require("config.autocmds")
 require("luasnip.loaders.from_snipmate").load({ paths = "~/.config/nvim/lua/snippets/" })
 
+-- ステータスバーの設定
 vim.o.winbar =
-"%#WinBarPath# ./%{expand('%:p:.')}%=[ %{&fileencoding != '' ? &fileencoding : 'utf-8'} ] [ %{&fileformat != '' ? &fileformat : 'unix'} ]  "
+"%#WinBarPath#%= [ POS: %{line('.')}:%{col('.')}:%3p%% ] [ LINE: %{line('$')} ] [ SIZE: %{getfsize(expand('%'))}B ] [ %{&fileencoding != '' ? &fileencoding : 'utf-8'} ] [ %{&fileformat != '' ? &fileformat : 'unix'} ]"
 
-vim.cmd([[
-highlight WinBarPath guifg=#606060 guibg=#1c1c1c
-]])
+vim.cmd([[ highlight WinBarPath guifg=#606060 guibg=#1c1c1c ]])
+
+
 
 local function auto_activate_venv()
     local venv_path = vim.fn.getcwd() .. '/.venv'

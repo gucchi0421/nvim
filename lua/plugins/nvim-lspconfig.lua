@@ -26,6 +26,7 @@ return {
                     "intelephense",
                     "html",
                     "cssls",
+                    "dockerls"
                 },
             })
 
@@ -169,29 +170,11 @@ return {
                         settings = {
                             pylsp = {
                                 plugins = {
-                                    pycodestyle = {
-                                        max_line_length = 88,
-                                    },
-                                    flake8 = {
+                                    pylsp_mypy = {
                                         enabled = true,
-                                        maxLineLength = 88,
+                                        live_mode = true, -- 保存前にチェック
+                                        strict = true,    -- 厳格な型チェック
                                     },
-                                    pylint = {
-                                        enabled = true,
-                                        args = { "--max-line-length=88", "--disable=C0111" },
-                                    },
-                                    pyls_mypy = {
-                                        enabled = true,
-                                        live_mode = true,
-                                        strict = true,
-                                    },
-                                },
-                                completion = {
-                                    cr_behavior = "newline",
-                                },
-                                analysis = {
-                                    typeCheckingMode = "strict",
-                                    useLibraryCodeForTypes = true,
                                 },
                             },
                         },
@@ -311,10 +294,23 @@ return {
                         },
                     }))
                 end,
+                ["dockerls"] = function()
+                    lspconfig.dockerls.setup(vim.tbl_extend("force", default_config, {
+                        settings = {
+                            docker = {
+                                languageserver = {
+                                    formatter = {
+                                        ignoreMultilineInstructions = true,
+                                    },
+                                },
+                            }
+                        }
+                    }))
+                end,
             })
             -- LSPの自動起動
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "go", "python", "javascript", "typescript", "php", "css", "scss", "html" },
+                pattern = { "go", "python", "javascript", "typescript", "php", "css", "scss", "html", "dockerls" },
                 callback = function()
                     vim.cmd("LspStart")
                 end,

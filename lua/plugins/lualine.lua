@@ -54,6 +54,28 @@ end
 -- キーイベントをキャプチャ
 vim.on_key(key_logger)
 
+
+-- 環境変数を格納する変数
+_G.ACTIVE_VENV = nil
+
+local function auto_activate_venv()
+    local venv_path = vim.fn.getcwd() .. '/.venv'
+    if vim.fn.isdirectory(venv_path) == 1 then
+        vim.env.VIRTUAL_ENV = venv_path
+        vim.env.PATH = venv_path .. '/bin:' .. vim.env.PATH
+        _G.ACTIVE_VENV = venv_path
+        vim.notify('Activated venv: ' .. venv_path, vim.log.levels.INFO, { title = 'Python Environment' })
+    end
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'python',
+    callback = function()
+        auto_activate_venv()
+    end,
+    desc = 'Auto activate Python venv'
+})
+
 return {
     {
         "nvim-tree/nvim-web-devicons",
@@ -111,42 +133,18 @@ return {
                                 if #clients > 0 then
                                     return '🛠️ LSP: ACTIVE'
                                 else
-                                    return '🛠️ LSP: INACTIVE'
+                                    return '🛠️ LSP: N/A'
                                 end
                             end,
                         },
-                        -- 現在のアクティブなバッファ数
-                        -- {
-                        --     function()
-                        --         local buffers = vim.fn.getbufinfo({ buflisted = 1 })
-                        --         return '📁 BUFFER: ' .. buffers
-                        --     end,
-                        -- },
-                        -- ファイルサイズ
                         {
                             function()
-                                local size = vim.fn.getfsize(vim.fn.expand('%:p'))
-                                if size < 0 then return '📁 SIZE: N/A' end
-                                return string.format('📁 SIZE: %.1fKB', size / 1024)
+                                local ft = vim.bo.filetype
+                                if ft == 'python' and _G.ACTIVE_VENV then
+                                    return '🐍 VENV: ' .. vim.fn.fnamemodify(_G.ACTIVE_VENV, ':t')
+                                end
+                                return ''
                             end,
-                        },
-                        -- 総行数
-                        {
-                            function()
-                                local total_lines = vim.fn.line('$')
-                                return '📝 LINE: ' .. total_lines
-                            end,
-                        },
-                        -- 現在の行と列
-                        {
-                            function()
-                                local cursor = vim.api.nvim_win_get_cursor(0)
-                                return '📍 POS: ' .. cursor[1] .. ':' .. cursor[2]
-                            end,
-                        },
-                        -- ファイル内の進行状況 (POSの右に配置)
-                        {
-                            'progress',
                         },
                     },
 
