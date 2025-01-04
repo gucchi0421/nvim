@@ -1,0 +1,16 @@
+.hoge {
+  justify-content: center;
+  align-items: center;
+
+  &__node {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.hoge {
+  &__gofe {
+    text-shadow: none;
+    font-size: 12px;
+  }
+}

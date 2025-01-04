@@ -4,6 +4,7 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
+        "mfussenegger/nvim-dap",
     },
     config = function()
         require("gopher").setup({
@@ -22,6 +23,7 @@ return {
                 template_name = "", -- テンプレート名（省略可能）
             },
             gotag = {               -- gomodifytagsのタグ設定
+                transform = "snakecase",
                 options = {         -- タグ生成時のオプション
                     json = true,    -- JSONタグを自動追加
                     xml = false,    -- XMLタグは不要ならfalse
@@ -45,23 +47,24 @@ return {
         local map = vim.keymap.set
 
         -- テスト関連
-        map("n", "<space>got", "<cmd>GoTestAdd<CR>", { desc = "Test current function" }) -- 修正
-        map("n", "<space>goa", "<cmd>GoTestsAll<CR>", { desc = "Generate all tests" })
-        map("n", "<space>goe", "<cmd>GoTestsExp<CR>", { desc = "Test exported funcs" })
+        map("n", "<leader>cgt", "<cmd>GoTestAdd<CR>", { desc = "Test current function" }) -- 修正
+        map("n", "<leader>cga", "<cmd>GoTestsAll<CR>", { desc = "Generate all tests" })
+        map("n", "<leader>cge", "<cmd>GoTestsExp<CR>", { desc = "Test exported funcs" })
 
         -- タグ関連
-        map("n", "<space>goj", "<cmd>GoTagAdd json<CR>", { desc = "Add json tags" })
-        map("n", "<space>gor", "<cmd>GoTagRm json<CR>", { desc = "Remove json tags" })
+        map("n", "<leader>cgj", "<cmd>GoTagAdd json<CR>", { desc = "Add json tags" })
+        map("n", "<leader>cgr", "<cmd>GoTagRm json<CR>", { desc = "Remove json tags" })
 
         -- エラーハンドリング
-        map("n", "<space>goi", "<cmd>GoIfErr<CR>", { desc = "Generate if err" })
+        map("n", "<leader>cgi", "<cmd>GoIfErr<CR>", { desc = "Generate if err" })
 
         -- インターフェース実装
-        map("n", "<space>gom", "<cmd>GoImpl ", { desc = "Implement interface" })
+        map("n", "<leader>cgm", "<cmd>GoImpl ", { desc = "Implement interface" })
 
         -- その他
-        map("n", "<space>god", "<cmd>GoMod tidy<CR>", { desc = "Go mod tidy" })
-        map("n", "<space>goc", "<cmd>GoCmt<CR>", { desc = "Generate comment" })
+        map("n", "<leader>cgd", "<cmd>GoMod tidy<CR>", { desc = "Go mod tidy" })
+        map("n", "<leader>cgg", "<cmd>GoGenerate<CR>", { desc = "Go generate" })
+        map("n", "<leader>cgc", "<cmd>GoCmt<CR>", { desc = "Generate comment" })
     end,
     build = ":TSInstall go",
 }
