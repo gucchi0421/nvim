@@ -144,26 +144,44 @@ return {
                         },
                         {
                             function()
-                                -- ファイルが存在する場合のみ実行
-                                if vim.fn.expand("%") ~= "" then
-                                    local enc = vim.opt.fileencoding:get() ~= "" and vim.opt.fileencoding:get() or ""
+                                -- より厳密なファイルチェック
+                                local filename = vim.fn.expand("%")
+                                local bufname = vim.fn.bufname()
+                                local buftype = vim.bo.buftype
 
-                                    -- ファイルが実際に存在する場合のみstatを実行
-                                    local stat_info = ""
-                                    if vim.fn.filereadable(vim.fn.expand("%")) == 1 then
-                                        local ok, stats = pcall(
-                                            vim.fn.systemlist,
-                                            'stat -c "%A %U %G %s(B) %y" ' .. vim.fn.expand("%")
-                                        )
-                                        if ok and stats[1] then
-                                            stat_info = stats[1]:gsub("%.%d+", ""):gsub("%+.*", "")
-                                        end
-                                    end
-
-                                    return string.format("📄 %s%s", stat_info, enc)
+                                -- バッファタイプが空でない、またはファイル名が空の場合は表示しない
+                                if buftype ~= "" or filename == "" or bufname == "" then
+                                    return ""
                                 end
-                                return ""
-                            end,
+
+                                -- 通常のファイルでない場合は表示しない
+                                if not vim.fn.filereadable(filename) then
+                                    return ""
+                                end
+
+                                local enc = vim.opt.fileencoding:get() ~= "" and vim.opt.fileencoding:get() or ""
+
+                                -- ファイルフォーマット (改行コード)
+                                local fileformat = vim.bo.fileformat
+                                local fileformat_symbol = fileformat == "unix" and "LF" or
+                                    (fileformat == "dos" and "CRLF" or "CR")
+
+                                -- statコマンドの実行
+                                local stat_info = ""
+                                local ok, stats = pcall(
+                                    vim.fn.systemlist,
+                                    'stat -c "%A %U %G %s(B) %y" ' .. filename
+                                )
+                                if ok and stats[1] then
+                                    stat_info = stats[1]:gsub("%.%d+", ""):gsub("%+.*", "")
+                                end
+
+                                return string.format("%s %s%s %s",
+                                    stat_info ~= "" and "📄" or "",
+                                    stat_info,
+                                    enc,
+                                    fileformat_symbol)
+                            end
                         },
                     },
 

@@ -26,7 +26,8 @@ return {
                     "intelephense",
                     "html",
                     "cssls",
-                    "dockerls"
+                    "dockerls",
+                    "jdtls"
                 },
             })
 
@@ -307,10 +308,13 @@ return {
                         }
                     }))
                 end,
+                ["jdtls"] = function()
+                    lspconfig.jdtls.setup { cmd = { 'jdtls' } }
+                end,
             })
             -- LSPの自動起動
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "go", "python", "javascript", "typescript", "php", "css", "scss", "html", "dockerls" },
+                pattern = { "go", "python", "javascript", "typescript", "php", "css", "scss", "html", "dockerls", "jdtls" },
                 callback = function()
                     vim.cmd("LspStart")
                 end,
