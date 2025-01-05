@@ -11,10 +11,18 @@ return {
                     left_top = "╭",
                     left_bottom = "╰",
                     right_arrow = ">",
+                    use_treesitter = true,
                 },
                 indent = {
                     enable = true,
-                    indent_style = "none"
+                    priority = 10,
+                    style = {
+                        "#6E6B6B",
+                    },
+                    use_treesitter = false,
+                    chars = { "┊" },
+                    ahead_lines = 20,
+                    delay = 100
                 },
                 blank = {
                     enable = false

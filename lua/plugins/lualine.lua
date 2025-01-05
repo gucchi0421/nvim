@@ -83,7 +83,7 @@ return {
     },
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-web-devicons' },
+        dependencies = { 'nvim-web-devicons', 'pnx/lualine-lsp-status' },
         event = { 'BufNewFile', 'BufRead' },
         config = function()
             require('lualine').setup({
@@ -128,20 +128,54 @@ return {
                     -- 中央:
                     lualine_c = {
                         {
-                            function()
-                                local clients = vim.lsp.get_active_clients()
-                                if #clients > 0 then
-                                    return '🛠️ LSP: ACTIVE'
-                                else
-                                    return '🛠️ LSP: N/A'
-                                end
-                            end,
+                            -- ファイルタイプを表示
+                            'filetype',
+                            icon_only = false,
                         },
+                        {
+                            'lsp-status',
+                        },
+                        -- {
+                        --     function()
+                        --         local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+                        --         local lsp_names = {}
+                        --         for _, client in ipairs(clients) do
+                        --             if client.name ~= "null-ls" then
+                        --                 table.insert(lsp_names, client.name)
+                        --             end
+                        --         end
+                        --         if #lsp_names > 0 then
+                        --             return "» " .. table.concat(lsp_names, ", ") -- シンプルな矢印
+                        --         end
+                        --         return ""
+                        --     end,
+                        -- },
                         {
                             function()
                                 local ft = vim.bo.filetype
                                 if ft == 'python' and _G.ACTIVE_VENV then
-                                    return '🐍 VENV: ' .. vim.fn.fnamemodify(_G.ACTIVE_VENV, ':t')
+                                    return "" .. vim.fn.fnamemodify(_G.ACTIVE_VENV, ':t') -- ダイヤモンド
+                                end
+                                return ''
+                            end,
+                        },
+                        {
+                            function()
+                                -- ファイルが存在する場合のみ実行
+                                if vim.fn.expand('%') ~= '' then
+                                    local enc = vim.opt.fileencoding:get() ~= '' and vim.opt.fileencoding:get() or ''
+
+                                    -- ファイルが実際に存在する場合のみstatを実行
+                                    local stat_info = ''
+                                    if vim.fn.filereadable(vim.fn.expand('%')) == 1 then
+                                        local ok, stats = pcall(vim.fn.systemlist,
+                                            'stat -c "%A %U %G %s %y" ' .. vim.fn.expand('%'))
+                                        if ok and stats[1] then
+                                            stat_info = stats[1]:gsub('%.%d+', ''):gsub('%+.*', '')
+                                        end
+                                    end
+
+                                    return string.format('📄 %s%s', stat_info, enc)
                                 end
                                 return ''
                             end,
@@ -159,24 +193,29 @@ return {
                             end,
                             color = { fg = '#fa8072' }
                         },
+
+                    },
+                    -- 右中央:
+                    lualine_y = {
+                        -- {
+                        --     function()
+                        --         local handle = io.popen("grep 'cpu MHz' /proc/cpuinfo | awk '{print $4}' | head -n 1")
+                        --         if handle then
+                        --             local cpu_mhz = handle:read("*a")
+                        --             handle:close()
+                        --             return cpu_mhz and ('⚙️  ' .. string.format('%.0f(MHz)', tonumber(cpu_mhz))) or
+                        --                 ''
+                        --         end
+                        --         return ''
+                        --     end,
+                        --     cond = function()
+                        --         return vim.fn.has('unix') == 1 and vim.fn.filereadable('/proc/cpuinfo') == 1
+                        --     end,
+                        -- },
                         {
                             function()
-                                local handle = io.popen("grep 'cpu MHz' /proc/cpuinfo | awk '{print $4}' | head -n 1")
-                                if handle then
-                                    local cpu_mhz = handle:read("*a")
-                                    handle:close()
-                                    return cpu_mhz and ('⚙️  CPU: ' .. string.format('%.0fMHz', tonumber(cpu_mhz))) or
-                                        ''
-                                end
-                                return ''
-                            end,
-                            cond = function()
-                                return vim.fn.has('unix') == 1 and vim.fn.filereadable('/proc/cpuinfo') == 1
-                            end,
-                        },
-                        {
-                            function()
-                                local handle = io.popen("free -m | awk '/Mem:/ {printf \"🧠 MEM: %.0f/%.0fMB\", $3, $2}'")
+                                local handle = io.popen(
+                                    "free -m | awk '/Mem:/ {printf \"💽 %.0f/%.0f(MB)\", $3, $2}'")
                                 if handle then
                                     local mem = handle:read("*a")
                                     handle:close()
@@ -188,10 +227,6 @@ return {
                                 return vim.fn.has('unix') == 1 and vim.fn.executable('free') == 1
                             end,
                         },
-                    },
-                    -- 右中央:
-                    lualine_y = {
-                        -- 'encoding',
                     },
                     -- 右端:
                     lualine_z = {

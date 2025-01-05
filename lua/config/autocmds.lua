@@ -1,3 +1,10 @@
+-- config/autocmds.lua
+vim.api.nvim_create_autocmd("ColorScheme", {
+    callback = function()
+        vim.cmd([[ highlight WinBarPath guifg=#606060 guibg=#1c1c1c ]])
+    end,
+})
+
 -- ================================================
 -- カーソル位置を記憶し再開時にスムージングスクロール
 -- ================================================
@@ -226,3 +233,29 @@ vim.api.nvim_create_user_command("SassStop", sass_stop, { desc = "Stop Sass watc
 vim.api.nvim_set_keymap("n", "<leader>csw", ":SassWatch<CR>", { noremap = true, silent = true, desc = "Sass watch" })
 vim.api.nvim_set_keymap("n", "<leader>css", ":SassOnce<CR>", { noremap = true, silent = true, desc = "Sass compile" })
 vim.api.nvim_set_keymap("n", "<leader>csq", ":SassStop<CR>", { noremap = true, silent = true, desc = "Stop sass watch" })
+
+
+
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd({ 'ModeChanged' }, {
+    callback = function()
+        local current_mode = vim.fn.mode()
+        if current_mode == 'n' then
+            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#8aa872' })
+            vim.fn.sign_define('smoothcursor', { text = '' })
+        elseif current_mode == 'v' then
+            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
+            vim.fn.sign_define('smoothcursor', { text = '' })
+        elseif current_mode == 'V' then
+            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
+            vim.fn.sign_define('smoothcursor', { text = '' })
+        elseif current_mode == '�' then
+            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#bf616a' })
+            vim.fn.sign_define('smoothcursor', { text = '' })
+        elseif current_mode == 'i' then
+            vim.api.nvim_set_hl(0, 'SmoothCursor', { fg = '#668aab' })
+            vim.fn.sign_define('smoothcursor', { text = '' })
+        end
+    end,
+})

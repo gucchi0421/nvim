@@ -1,9 +1,3 @@
--- ステータスバーの設定
-vim.o.winbar =
-"%#WinBarPath#%= [ POS: %{line('.')}:%{col('.')}:%3p%% ] [ LINE: %{line('$')} ] [ SIZE: %{getfsize(expand('%'))}B ] [ %{&fileencoding != '' ? &fileencoding : 'utf-8'} ] [ %{&fileformat != '' ? &fileformat : 'unix'} ]"
-
-vim.cmd([[ highlight WinBarPath guifg=#606060 guibg=#1c1c1c ]])
-
 vim.opt.helplang = "ja"           -- ヘルプ言語を日本語に設定
 vim.opt.expandtab = true          -- タブをスペースに変換
 vim.opt.autoindent = true         -- 自動インデントを有効にする
@@ -20,5 +14,5 @@ vim.opt.swapfile = false          -- スワップファイルを生成しない
 vim.opt.helplang = "ja"           -- ヘルプファイルの言語は日本語
 vim.opt.guicursor = "n-i:ver25"   -- フォーカスしている行を太字にする
 vim.opt.termguicolors = true      -- 24ビットカラー
-vim.opt.spelllang = "en,cjk"      -- 日本語のスペルチェック
+vim.opt.spelllang = "cjk"         -- 日本語のスペルチェック
 vim.opt.showcmd = true            -- 入力中のコマンドを表示

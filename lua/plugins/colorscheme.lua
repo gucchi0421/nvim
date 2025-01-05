@@ -2,24 +2,24 @@ return {
     { "xiyaowong/transparent.nvim" },
 
     -- melange
-    {
-        { "savq/melange-nvim" }
-    },
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "melange",
-        },
-    },
-
-    -- everforest
-    -- { "neanias/everforest-nvim" },
+    -- {
+    --     { "savq/melange-nvim" }
+    -- },
     -- {
     --     "LazyVim/LazyVim",
     --     opts = {
-    --         colorscheme = "everforest",
+    --         colorscheme = "melange",
     --     },
     -- },
+
+    -- everforest
+    { "neanias/everforest-nvim" },
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "everforest",
+        },
+    },
 
     -- kanagawa-paper
     -- {
