@@ -16,11 +16,15 @@ map("n", "<F1>", ":edit $MYVIMRC<CR>", opts) -- 設定ファイルを開く
 ------------------------
 -- カーソル・移動操作 --
 ------------------------
--- インサートモードでのカーソル移動
 map("i", "<C-k>", "<Up>", opts)
 map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
+
+map('n', '<C-k>', '<C-d>', opts)
+map('n', '<C-j>', '<C-u>', opts)
+map('n', '<S-k>', '<C-f>', opts)
+map('n', '<S-j>', '<C-b>', opts)
 
 -- 行移動
 map("n", "<A-Up>", ":m .-2<CR>==", opts)
@@ -49,7 +53,7 @@ map("i", "<S-Left>", "<Esc>v<Left>", opts)
 map("i", "<S-Right>", "<Esc>v<Right>", opts)
 
 -- 編集操作
-map("v", "<C-d>", "d<Esc>i", opts) -- 選択範囲を削除してインサートモードへ
+map("v", "<C-d>", "d<Esc>", opts) -- 選択範囲を削除
 
 -- コピー&ペースト
 map("v", "<C-x>", "d<Esc>", opts)    -- 選択範囲カット

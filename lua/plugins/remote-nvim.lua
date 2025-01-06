@@ -1,55 +1,55 @@
 local ssh_config = {
-    ssh_binary = "ssh",
-    scp_binary = "scp",
-    ssh_config_file_paths = { "$HOME/.ssh/config" },
-    ssh_prompts = {
-        {
-            match = "Enter passphrase for key",
-            type = "secret",
-            value_type = "static",
-            value = "",
-        },
-        {
-            match = "password:",
-            type = "secret",
-            value_type = "static",
-            value = "",
-        },
-        {
-            match = "continue connecting (yes/no/[fingerprint])?",
-            type = "plain",
-            value_type = "static",
-            value = "",
-        },
+  ssh_binary = "ssh",
+  scp_binary = "scp",
+  ssh_config_file_paths = { "$HOME/.ssh/config" },
+  ssh_prompts = {
+    {
+      match = "Enter passphrase for key",
+      type = "secret",
+      value_type = "static",
+      value = "",
     },
+    {
+      match = "password:",
+      type = "secret",
+      value_type = "static",
+      value = "",
+    },
+    {
+      match = "continue connecting (yes/no/[fingerprint])?",
+      type = "plain",
+      value_type = "static",
+      value = "",
+    },
+  },
 }
 
 return {
-    "amitds1997/remote-nvim.nvim",
-    version = "*",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "nvim-telescope/telescope.nvim",
-    },
-    config = function()
-        -- プラグインの基本設定
-        require("remote-nvim").setup({
-            ssh = ssh_config,
-        })
+  "amitds1997/remote-nvim.nvim",
+  version = "*",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "MunifTanjim/nui.nvim",
+    "nvim-telescope/telescope.nvim",
+  },
+  config = function()
+    -- プラグインの基本設定
+    require("remote-nvim").setup({
+      ssh = ssh_config,
+    })
 
-        -- キーマッピングの設定
-        local keymap = vim.keymap.set
-        local opts = { noremap = true, silent = true }
+    -- キーマッピングの設定
+    local keymap = vim.keymap.set
+    local opts = { noremap = true, silent = true }
 
-        -- Remote commands
-        keymap("n", "<leader>rs", ":RemoteStart<CR>", opts) -- Start remote session
-        keymap("n", "<leader>rq", ":RemoteStop<CR>", opts) -- Stop remote session
-        keymap("n", "<leader>ri", ":RemoteInfo<CR>", opts) -- Show session info
-        keymap("n", "<leader>rc", ":RemoteCleanup<CR>", opts) -- Cleanup remote setup
-        keymap("n", "<leader>rd", ":RemoteConfigDel<CR>", opts) -- Delete old records
-        keymap("n", "<leader>rl", ":RemoteLog<CR>", opts) -- Open log file
-    end,
+    -- Remote commands
+    keymap("n", "<leader>rs", ":RemoteStart<CR>", opts) -- Start remote session
+    keymap("n", "<leader>rq", ":RemoteStop<CR>", opts) -- Stop remote session
+    keymap("n", "<leader>ri", ":RemoteInfo<CR>", opts) -- Show session info
+    keymap("n", "<leader>rc", ":RemoteCleanup<CR>", opts) -- Cleanup remote setup
+    keymap("n", "<leader>rd", ":RemoteConfigDel<CR>", opts) -- Delete old records
+    keymap("n", "<leader>rl", ":RemoteLog<CR>", opts) -- Open log file
+  end,
 }
 
 -- :RemoteStart

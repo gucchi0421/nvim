@@ -3,11 +3,11 @@ require("config.lazy")
 require("config.autocmds")
 require("luasnip.loaders.from_snipmate").load({ paths = "~/.config/nvim/lua/snippets/" })
 
-vim.opt.winbar = "%#WinBarPath#" ..
-    " File: %t > " .. -- %fを%tに変更してファイル名のみ表示
-    "%{%v:lua.require'nvim-navic'.get_location()%}" ..
-    "%#WinBarPath#" ..
-    "%=%{line('.')}:%{col('.')} %3p%% "
+vim.opt.winbar = "%#WinBarPath#"
+  .. " File: %t > "
+  .. "%{%v:lua.require'nvim-navic'.get_location()%}"
+  .. "%#WinBarPath#"
+  .. "%=%{line('.')}:%{col('.')} %3p%% "
 
 vim.cmd([[
     highlight WinBarPath guifg=#606060 guibg=#1c1c1c
@@ -43,7 +43,7 @@ vim.cmd([[
 
 local wk = require("which-key")
 wk.add({
-    { "<leader>c", group = "+code" },
-    { "<leader>cg", desc = "+【Go】" },
-    { "<leader>cs", desc = "+【Sass】" },
+  { "<leader>c", group = "+code" },
+  { "<leader>cg", desc = "+【Go】" },
+  { "<leader>cs", desc = "+【Sass】" },
 })

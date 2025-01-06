@@ -9,7 +9,7 @@ return {
             bash = { "shfmt" },
             lua = { "stylua" },
             go = { "goimports", "gofmt" },
-            python = { "isort", "black" },
+            python = { "ruff" },
             rust = { "rustfmt" },
             php = { "php_cs_fixer" },
             -- Web
