@@ -134,3 +134,5 @@ function cd() {
 alias lzd='lazydocker'
 export GOBIN=$HOME/go/bin
 export PATH=$GOBIN:$PATH
+export GRADLE_HOME=/opt/gradle/gradle-8.4
+export PATH=$GRADLE_HOME/bin:$PATH
