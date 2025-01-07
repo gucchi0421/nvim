@@ -9,6 +9,13 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "gruvbox",
+      lsp = {
+        setup = {
+          on_attach = function(client, bufnr)
+            vim.bo[bufnr].omnifunc = nil
+          end,
+        },
+      },
     },
   },
 

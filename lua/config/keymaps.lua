@@ -52,9 +52,6 @@ map("i", "<S-Down>", "<Esc>v<Down>", opts)
 map("i", "<S-Left>", "<Esc>v<Left>", opts)
 map("i", "<S-Right>", "<Esc>v<Right>", opts)
 
--- 編集操作
-map("v", "<C-d>", "d<Esc>", opts) -- 選択範囲を削除
-
 -- コピー&ペースト
 map("v", "<C-x>", "d<Esc>", opts)    -- 選択範囲カット
 map("v", "<C-c>", "y<Esc>", opts)    -- 選択範囲コピー

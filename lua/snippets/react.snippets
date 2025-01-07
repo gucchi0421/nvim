@@ -114,15 +114,13 @@ snippet rcla
 		}
 	}
 
-snippet ercla
-	export default class ${1:ClassName} extends Component {
-		render() {
-			return (
-				<>
-					${2}
-				</>
-			);
-		};
+snippet edf
+	export default function ${1:ComponentName} {
+        return (
+            <>
+                ${2}
+            </>
+        );
 	};
 
 snippet ctor

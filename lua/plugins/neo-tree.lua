@@ -14,7 +14,6 @@ return {
             -- return require("neo-tree").close_all()
           end,
         },
-        -- ファイルが追加されたときにファイルシステムをリフレッシュ
         {
           event = "file_added",
           handler = function(file_path)
@@ -22,7 +21,6 @@ return {
           end,
         },
       },
-      -- ファイル監視を有効化
       use_libuv_file_watcher = true,
       filesystem = {
         filtered_items = {
@@ -58,7 +56,6 @@ return {
       },
     })
 
-    -- gopherプラグインのテスト生成後に明示的に更新するための設定
     vim.api.nvim_create_autocmd("User", {
       pattern = "GoTestAdd",
       callback = function()
