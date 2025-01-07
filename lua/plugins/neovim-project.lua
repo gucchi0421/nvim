@@ -4,7 +4,7 @@ return {
     opts = {
       projects = { -- define project roots
         "~/documents/functions/*",
-        "~/documents/template-*",
+        "~/documents/templates/*",
         "~/documents/services/*",
         "~/documents/tools/*",
         "~/documents/workspace/*/*",

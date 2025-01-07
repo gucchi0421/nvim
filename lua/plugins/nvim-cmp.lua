@@ -1,10 +1,4 @@
 return {
-  -- {
-  --     "ray-x/lsp_signature.nvim",
-  --     opts = {
-  --         toggle_key = "<A-p>",
-  --     },
-  -- },
   {
     "hrsh7th/nvim-cmp",
     enabled = true,
@@ -21,10 +15,10 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-
       cmp.setup({
         completion = {
           autocomplete = false,
+          completeopt = "menu,menuone,noinsert",
         },
         snippet = {
           expand = function(args)
@@ -32,7 +26,7 @@ return {
           end,
         },
         sources = {
-          { name = "nvim_lsp" },
+          { name = "nvim_lsp", trigger_characters = {} },
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
@@ -53,6 +47,17 @@ return {
             return vim_item
           end,
         },
+        mapping = cmp.mapping.preset.insert({
+          ["<CR>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.confirm({ select = true }) -- 補完ウィンドウが表示されている場合のみ確定
+            else
+              fallback() -- 通常のEnter動作
+            end
+          end, { "i", "s" }),
+
+          ["<C-CR>"] = cmp.mapping.confirm({ select = true }), -- Ctrl+Enterで補完確定
+        }),
       })
     end,
   },

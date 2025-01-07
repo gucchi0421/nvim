@@ -240,11 +240,6 @@ return {
           lspconfig.html.setup(vim.tbl_extend("force", default_config, {
             settings = {
               html = {
-                format = {
-                  enable = true, -- 自動フォーマットを有効化
-                  wrapLineLength = 120,
-                  preserveNewLines = true,
-                },
                 hover = {
                   documentation = true,
                   references = true,
@@ -347,7 +342,7 @@ return {
           "java",
           "kotlin",
           "rust",
-          "lua_ls",
+          "lua",
         },
         callback = function()
           vim.cmd("LspStart")
