@@ -10,7 +10,7 @@ map("i", "jj", "<Esc>", opts) -- インサートモードから抜ける
 map("i", "ｊｊ", "<Esc>", opts) -- インサートモードから抜ける
 
 -- ファイル操作
-map("n", "<C-s>", ":w<CR>", opts)            -- 保存
+map("n", "<C-s>", ":w<CR>", opts) -- 保存
 map("n", "<F1>", ":edit $MYVIMRC<CR>", opts) -- 設定ファイルを開く
 
 ------------------------
@@ -21,10 +21,10 @@ map("i", "<C-j>", "<Down>", opts)
 map("i", "<C-h>", "<Left>", opts)
 map("i", "<C-l>", "<Right>", opts)
 
-map('n', '<C-k>', '<C-d>', opts)
-map('n', '<C-j>', '<C-u>', opts)
-map('n', '<S-k>', '<C-f>', opts)
-map('n', '<S-j>', '<C-b>', opts)
+map("n", "<C-j>", "<C-d>", opts)
+map("n", "<C-k>", "<C-u>", opts)
+map("n", "<S-j>", "<C-f>", opts)
+map("n", "<S-k>", "<C-b>", opts)
 
 -- 行移動
 map("n", "<A-Up>", ":m .-2<CR>==", opts)
@@ -38,7 +38,7 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
 -- テキスト編集操作 --
 ------------------------
 -- インデント
-map("v", "<TAB>", ">gv", opts)   -- 選択範囲を右にインデント
+map("v", "<TAB>", ">gv", opts) -- 選択範囲を右にインデント
 map("v", "<S-TAB>", "<gv", opts) -- 選択範囲を左にインデント
 
 -- 選択操作
@@ -53,32 +53,32 @@ map("i", "<S-Left>", "<Esc>v<Left>", opts)
 map("i", "<S-Right>", "<Esc>v<Right>", opts)
 
 -- コピー&ペースト
-map("v", "<C-x>", "d<Esc>", opts)    -- 選択範囲カット
-map("v", "<C-c>", "y<Esc>", opts)    -- 選択範囲コピー
+map("v", "<C-x>", "d<Esc>", opts) -- 選択範囲カット
+map("v", "<C-c>", "y<Esc>", opts) -- 選択範囲コピー
 map("i", "<C-x>", "<Esc>dd$i", opts) -- 行カット
 map("i", "<C-c>", "<Esc>yy$i", opts) -- 行コピー
-map("n", "<C-x>", "dd$i", opts)      -- 行カット
-map("n", "<C-c>", "yy$i", opts)      -- 行コピー
-map("n", "<C-v>", "p<Esc>i", opts)   -- ペースト
-map("v", "<C-v>", "p<Esc>i", opts)   -- ペースト
-map("i", "<C-v>", "<Esc>pi", opts)   -- ペースト
+map("n", "<C-x>", "dd$i", opts) -- 行カット
+map("n", "<C-c>", "yy$i", opts) -- 行コピー
+map("n", "<C-v>", "p<Esc>i", opts) -- ペースト
+map("v", "<C-v>", "p<Esc>i", opts) -- ペースト
+map("i", "<C-v>", "<Esc>pi", opts) -- ペースト
 
 -- 元に戻す/やり直し
-map("i", "<C-z>", "<C-o>u", opts)     -- 元に戻す
+map("i", "<C-z>", "<C-o>u", opts) -- 元に戻す
 map("i", "<C-b>", "<C-o><C-r>", opts) -- やり直し
-map("n", "<C-b>", "<C-r>", opts)      -- やり直し
+map("n", "<C-b>", "<C-r>", opts) -- やり直し
 
 ------------------------
 -- ウィンドウ操作 --
 ------------------------
 -- 画面分割
-map("n", "ss", ":split<CR><C-w>w", opts)  -- 水平分割
+map("n", "ss", ":split<CR><C-w>w", opts) -- 水平分割
 map("n", "sv", ":vsplit<CR><C-w>w", opts) -- 垂直分割
-map("n", "sh", "<C-w>h", opts)            -- 左のウィンドウへ
-map("n", "sk", "<C-w>k", opts)            -- 上のウィンドウへ
-map("n", "sj", "<C-w>j", opts)            -- 下のウィンドウへ
-map("n", "sl", "<C-w>l", opts)            -- 右のウィンドウへ
-map("n", "so", ":close<CR>", opts)        -- ウィンドウを閉じる
+map("n", "sh", "<C-w>h", opts) -- 左のウィンドウへ
+map("n", "sk", "<C-w>k", opts) -- 上のウィンドウへ
+map("n", "sj", "<C-w>j", opts) -- 下のウィンドウへ
+map("n", "sl", "<C-w>l", opts) -- 右のウィンドウへ
+map("n", "so", ":close<CR>", opts) -- ウィンドウを閉じる
 
 ------------------------
 -- プラグイン操作 --
