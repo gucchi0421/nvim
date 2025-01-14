@@ -33,6 +33,7 @@ return {
       python = { "ruff" },
       go = { "goimports", "gofmt" },
       php = { "php_cs_fixer" },
+      blade = { "blade-formatter" },
     }
   end,
 }
