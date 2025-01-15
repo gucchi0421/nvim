@@ -12,106 +12,308 @@ os:
 customCommands:
   - key: "<c-c>"
     context: "files"
-    description: "commit files with format"
+    description: "コミットメッセージの作成"
     prompts:
       - type: "menu"
-        title: "What kind of commit type is it?"
+        title: "コミットタイプを選択"
         key: "Type"
         options:
-          - name: "fix"
-            description: "バグや不具合の修正"
-            value: "fix"
+          # Feature Development
           - name: "feat"
-            description: "新機能の追加"
+            description: "✨ 新機能の追加や機能の拡張"
             value: "feat"
-          - name: "docs"
-            description: "ドキュメントの更新や改善"
-            value: "docs"
-          - name: "style"
-            description: "コードフォーマットの修正、UIのみの変更"
-            value: "style"
-          - name: "refactor"
-            description: "パフォーマンスの改善なしのコードの改善"
-            value: "refactor"
-          - name: "test"
-            description: "テストの追加や改善"
-            value: "test"
+          - name: "ui"
+            description: "🎨 UIコンポーネントの変更や改善"
+            value: "ui"
+          - name: "api"
+            description: "🔌 API関連の変更や追加"
+            value: "api"
+          
+          # Bug Fixes & Improvements
+          - name: "fix"
+            description: "🐛 バグ修正やエラーの訂正"
+            value: "fix"
+          - name: "hotfix"
+            description: "🚑 本番環境での緊急修正"
+            value: "hotfix"
           - name: "perf"
-            description: "パフォーマンスの改善"
+            description: "⚡ パフォーマンスの改善"
             value: "perf"
-          - name: "chore"
-            description: "ビルドプロセスの変更や改善"
-            value: "chore"
+          
+          # Code Quality
+          - name: "refactor"
+            description: "♻  コードのリファクタリング"
+            value: "refactor"
+          - name: "style"
+            description: "💄 コードスタイルやフォーマットの変更"
+            value: "style"
+          - name: "test"
+            description: "✅ テストの追加や修正"
+            value: "test"
+          
+          # Infrastructure & Dependencies
+          - name: "deps"
+            description: "📦 依存関係の更新"
+            value: "deps"
+          - name: "build"
+            description: "🏗 ビルドシステムの変更"
+            value: "build"
+          - name: "ci"
+            description: "👷 CI/CDの変更"
+            value: "ci"
+          - name: "config"
+            description: "⚙  設定ファイルの変更"
+            value: "config"
+          
+          # Database & Data
+          - name: "db"
+            description: "🗃 データベースの変更"
+            value: "db"
+          - name: "data"
+            description: "📊 データモデルや構造の変更"
+            value: "data"
+          
+          # Documentation & Comments
+          - name: "docs"
+            description: "📝 ドキュメントの更新"
+            value: "docs"
+          - name: "comment"
+            description: "💡 コメントの追加や更新"
+            value: "comment"
+          
+          # Internationalization & Accessibility
+          - name: "i18n"
+            description: "🌐 国際化対応の変更"
+            value: "i18n"
+          - name: "a11y"
+            description: "♿ アクセシビリティの改善"
+            value: "a11y"
+          
+          # Security & Authentication
+          - name: "security"
+            description: "🔒 セキュリティ関連の変更"
+            value: "security"
+          - name: "auth"
+            description: "🔐 認証・認可関連の変更"
+            value: "auth"
+          
+          # Project Management
           - name: "wip"
-            description: "作業中"
+            description: "🚧 作業途中の変更"
             value: "wip"
+          - name: "merge"
+            description: "🔀 ブランチのマージ"
+            value: "merge"
+          - name: "revert"
+            description: "⏪ 変更の取り消し"
+            value: "revert"
+          - name: "chore"
+            description: "🔧 メンテナンス作業"
+            value: "chore"
+
+      - type: "menu"
+        title: "変更範囲の選択（任意）"
+        key: "Scope"
+        options:
+          - name: "(空)"
+            description: "特定の範囲なし"
+            value: "none"
+          - name: "frontend"
+            description: "フロントエンド関連の変更"
+            value: "frontend"
+          - name: "backend"
+            description: "バックエンド関連の変更"
+            value: "backend"
+          - name: "api"
+            description: "API関連の変更"
+            value: "api"
+          - name: "db"
+            description: "データベース関連の変更"
+            value: "db"
+          - name: "auth"
+            description: "認証関連の変更"
+            value: "auth"
+          - name: "ui"
+            description: "UI関連の変更"
+            value: "ui"
+          - name: "core"
+            description: "コア機能の変更"
+            value: "core"
+          - name: "deps"
+            description: "依存関係の変更"
+            value: "deps"
+          - name: "config"
+            description: "設定関連の変更"
+            value: "config"
+
       - type: "input"
-        title: "Enter the Message"
+        title: "コミットタイトルを入力"
         key: "Message"
         initialValue: ""
+
       - type: "menu"
-        title: "Choise the emoji"
+        title: "絵文字の選択（任意）"
         key: "Emoji"
         options:
-          - name: "(empty)"
-            description: ""
-            value: " "
-          - name: ":ambulance:"
-            description: "(fix)🚑致命的なバグ修正"
-            value: ":ambulance:"
-          - name: ":bug:"
-            description: "(fix)🐛バグ修正"
-            value: ":bug:"
-          - name: ":+1:"
-            description: "(fix)👍機能改善や機能修正"
-            value: ":+1:"
-          - name: ":cop:"
-            description: "(fix)👮セキュリティ関連の修正"
-            value: ":cop:"
-          - name: ":tada"
-            description: "(feat)🎉大きな機能追加"
-            value: ":tada:"
-          - name: ":sparkles:"
-            description: "(feat)✨部分的な機能追加"
+                    # 機能開発
+          - name: "✨"
+            description: "新機能の追加"
             value: ":sparkles:"
-          - name: ":up:"
-            description: "(feat)🆙依存パッケージ等のアップデート"
-            value: ":up:"
-          - name: ":memo:"
-            description: "(docs)📝ドキュメントの追加や修正"
-            value: ":memo:"
-          - name: ":bulb"
-            description: "(docs)💡ソースコードへのコメント追加や修正"
-            value: ":bulb:"
-          - name: ":art:"
-            description: "(style)🎨レイアウト関連の修正"
+          - name: "🎉"
+            description: "大きな機能の追加"
+            value: ":tada:"
+          - name: "🎨"
+            description: "UI/UXの改善"
             value: ":art:"
-          - name: ":lipstick:"
-            description: "(style)💄Lintエラーの修正やコードスタイルの修正"
+          - name: "💄"
+            description: "スタイル/UIの更新"
             value: ":lipstick:"
-          - name: ":recycle:"
-            description: "(refactor)♻️ リファクタリング"
-            value: ":recycle:"
-          - name: ":fire:"
-            description: "(refactor)🔥コードやファイルの削除"
-            value: ":fire:"
-          - name: ":green_heart:"
-            description: "(test)💚テストやCIの修正"
-            value: ":green_heart:"
-          - name: ":rocket:"
-            description: "(perf)🚀パフォーマンス改善"
+          
+          # バグ修正とパフォーマンス
+          - name: "🐛"
+            description: "バグ修正"
+            value: ":bug:"
+          - name: "🚑"
+            description: "緊急の修正"
+            value: ":ambulance:"
+          - name: "⚡"
+            description: "パフォーマンス改善"
+            value: ":zap:"
+          - name: "🚀"
+            description: "パフォーマンスの最適化"
             value: ":rocket:"
-          - name: ":wrench:"
-            description: "(chore)🔧設定ファイルの修正"
-            value: ":wrench:"
-          - name: ":building_construction:"
-            description: "(chore)🏗️アーキテクチャの修正"
+          
+          # コード品質
+          - name: "♻"
+            description: "リファクタリング"
+            value: ":recycle:"
+          - name: "🔥"
+            description: "コードの削除"
+            value: ":fire:"
+          - name: "✅"
+            description: "テストの追加・修正"
+            value: ":white_check_mark:"
+          
+          # インフラストラクチャ
+          - name: "📦"
+            description: "依存関係の更新"
+            value: ":package:"
+          - name: "⬆"
+            description: "依存関係のアップグレード"
+            value: ":arrow_up:"
+          - name: "⬇"
+            description: "依存関係のダウングレード"
+            value: ":arrow_down:"
+          - name: "🏗"
+            description: "ビルドの変更"
             value: ":building_construction:"
-          - name: ":construction:"
-            description: "(wip)🚧作業中"
+          - name: "👷"
+            description: "CI/CDの変更"
+            value: ":construction_worker:"
+          
+          # データベースとデータ
+          - name: "🗃"
+            description: "データベースの変更"
+            value: ":card_file_box:"
+          - name: "📊"
+            description: "データ/分析の変更"
+            value: ":bar_chart:"
+          
+          # ドキュメントと整理
+          - name: "📝"
+            description: "ドキュメントの更新"
+            value: ":memo:"
+          - name: "💡"
+            description: "コメントの追加・更新"
+            value: ":bulb:"
+          - name: "🏷"
+            description: "型定義の変更"
+            value: ":label:"
+          
+          # 国際化とアクセシビリティ
+          - name: "🌐"
+            description: "国際化対応"
+            value: ":globe_with_meridians:"
+          - name: "♿"
+            description: "アクセシビリティ対応"
+            value: ":wheelchair:"
+          
+          # セキュリティと認証
+          - name: "🔒"
+            description: "セキュリティ対応"
+            value: ":lock:"
+          - name: "🔐"
+            description: "認証関連の変更"
+            value: ":closed_lock_with_key:"
+          
+          # プロジェクト管理
+          - name: "🚧"
+            description: "作業進行中"
             value: ":construction:"
+          - name: "🔀"
+            description: "マージ作業"
+            value: ":twisted_rightwards_arrows:"
+          - name: "⏪"
+            description: "変更の取り消し"
+            value: ":rewind:"
+
+      - type: "input"
+        title: "コミットメッセージを入力"
+        key: "Notes"
+        initialValue: ""
+
+      - type: "input"
+        title: "関連するIssue/PR（任意）"
+        key: "Related"
+        initialValue: ""
+
       - type: "confirm"
-        title: "Commit"
-        body: "Commit with the message '{{.Form.Type}}: {{.Form.Message}}{{.Form.Emoji}}'. Is this okay?"
-    command: 'bash -c ''type="{{.Form.Type}}"; message="{{.Form.Message}}"; emoji="{{.Form.Emoji}}"; commit_message="$type: $message $emoji"; git commit -m "$commit_message"'''
-    loadingText: "Commiting..."
+        title: "コミットの確認"
+        body: |
+          以下のメッセージでコミットしますか？
+
+          {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}: {{.Form.Emoji}} {{if .Form.Related}}{{.Form.Related}} {{end}}{{.Form.Message}}
+
+          {{if .Form.Notes}}
+          {{.Form.Notes}}
+          {{end}}
+
+          {{if .Form.Related}}
+          Issue/PR: {{.Form.Related}}
+          {{end}}
+
+          よろしいですか？
+
+    command: |
+      bash -c '
+      type="{{.Form.Type}}";
+      scope="{{.Form.Scope}}";
+      message="{{.Form.Message}}";
+      emoji="{{.Form.Emoji}}";
+      related="{{.Form.Related}}";
+      notes="{{.Form.Notes}}";
+      
+      commit_message="";
+      if [ -n "$scope" ]; then
+        commit_message="$type($scope)";
+      else
+        commit_message="$type";
+      fi
+
+      if [ -n "$related" ]; then
+        commit_message="$commit_message $related";
+      fi
+      
+      commit_message="$commit_message: $emoji $message";
+      
+      if [ -n "$notes" ]; then
+        commit_message="$commit_message\n\n$notes";
+      fi
+      
+      if [ -n "$related" ]; then
+        commit_message="$commit_message\n\nIssue/PR: $related";
+      fi
+      
+      git commit -m "$commit_message"
+      '
+    loadingText: "コミットを作成中..."
