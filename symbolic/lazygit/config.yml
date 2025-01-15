@@ -115,7 +115,7 @@ customCommands:
         title: "変更範囲の選択（任意）"
         key: "Scope"
         options:
-          - name: "(空)"
+          - name: "none"
             description: "特定の範囲なし"
             value: "none"
           - name: "frontend"
@@ -272,7 +272,7 @@ customCommands:
         body: |
           以下のメッセージでコミットしますか？
 
-          {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}: {{.Form.Emoji}} {{if .Form.Related}}{{.Form.Related}} {{end}}{{.Form.Message}}
+          {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}: {{.Form.Emoji}}{{if .Form.Related}}{{.Form.Related}} {{end}}{{.Form.Message}}
 
           {{if .Form.Notes}}
           {{.Form.Notes}}
