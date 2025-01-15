@@ -276,42 +276,36 @@ customCommands:
 
           {{if .Form.Notes}}
           {{.Form.Notes}}
-          {{end}}
-
-          {{if .Form.Related}}
-          Issue/PR: {{.Form.Related}}
-          {{end}}
+          {{end}}{{if .Form.Related}}
+         
+          Issue/PR: {{.Form.Related}}{{end}}
 
           よろしいですか？
 
     command: |
       bash -c '
-      type="{{.Form.Type}}";
-      scope="{{.Form.Scope}}";
-      message="{{.Form.Message}}";
-      emoji="{{.Form.Emoji}}";
-      related="{{.Form.Related}}";
-      notes="{{.Form.Notes}}";
+      type="{{.Form.Type}}"
+      scope="{{.Form.Scope}}"
+      message="{{.Form.Message}}"
+      emoji="{{.Form.Emoji}}"
+      related="{{.Form.Related}}"
+      notes="{{.Form.Notes}}"
       
-      commit_message="";
+      first_line=""
       if [ -n "$scope" ]; then
-        commit_message="$type($scope)";
+        first_line="$type($scope): $emoji $message"
       else
-        commit_message="$type";
-      fi
-
-      if [ -n "$related" ]; then
-        commit_message="$commit_message $related";
+        first_line="$type: $emoji $message"
       fi
       
-      commit_message="$commit_message: $emoji $message";
+      commit_message=$(printf "%s" "$first_line")
       
       if [ -n "$notes" ]; then
-        commit_message="$commit_message\n\n$notes";
+        commit_message=$(printf "%s\n\n%s" "$commit_message" "$notes")
       fi
       
       if [ -n "$related" ]; then
-        commit_message="$commit_message\n\nIssue/PR: $related";
+        commit_message=$(printf "%s\n\nIssue/PR: %s" "$commit_message" "$related")
       fi
       
       git commit -m "$commit_message"
