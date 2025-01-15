@@ -189,6 +189,10 @@ return {
                     live_mode = true, -- 保存前にチェック
                     strict = true, -- 厳格な型チェック
                   },
+                  pycodestyle = {
+                    enabled = true,
+                    maxLineLength = 120, -- 長い行の設定を適用
+                  },
                 },
               },
             },

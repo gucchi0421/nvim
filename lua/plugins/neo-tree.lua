@@ -34,11 +34,9 @@ return {
         },
         group_empty_dirs = false,
         hijack_netrw_behavior = "open_current",
-        -- ファイルシステムの監視設定
         scan_mode = "deep",
         use_watchfile = true,
         watch_dir = true,
-        -- 更新間隔を短く
         watch_timeout = 100,
       },
       window = {
@@ -55,6 +53,11 @@ return {
         },
       },
     })
+
+    -- 背景透過の設定
+    vim.cmd([[ highlight NeoTreeNormal guibg=NONE ctermbg=NONE ]])
+    vim.cmd([[ highlight NeoTreeEndOfBuffer guibg=NONE ctermbg=NONE ]])
+    vim.cmd([[ highlight NeoTreeWinSeparator guibg=NONE ctermbg=NONE ]])
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "GoTestAdd",
