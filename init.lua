@@ -39,6 +39,7 @@ vim.cmd([[
     highlight NavicIconsEvent guifg=#606060 guibg=#1c1c1c
     highlight NavicIconsOperator guifg=#606060 guibg=#1c1c1c
     highlight NavicIconsTypeParameter guifg=#606060 guibg=#1c1c1c
+    highlight Cursor guifg=NONE guibg=#FFA500
 ]])
 
 local wk = require("which-key")
