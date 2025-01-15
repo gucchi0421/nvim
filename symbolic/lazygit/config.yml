@@ -270,7 +270,7 @@ customCommands:
       - type: "confirm"
         title: "コミットの確認"
         body: |
-          以下のメッセージでコミットしますか？
+          以下のメッセージでコミットしてよろしいですか？
 
           {{.Form.Type}}{{if .Form.Scope}}({{.Form.Scope}}){{end}}: {{.Form.Emoji}}{{if .Form.Related}}{{.Form.Related}} {{end}}{{.Form.Message}}
 
@@ -279,8 +279,6 @@ customCommands:
           {{end}}{{if .Form.Related}}
          
           Issue/PR: {{.Form.Related}}{{end}}
-
-          よろしいですか？
 
     command: |
       bash -c '
@@ -293,7 +291,7 @@ customCommands:
       
       first_line=""
       if [ -n "$scope" ]; then
-        first_line="$type($scope): $emoji $message"
+        first_line="$type($scope): $emoji$message"
       else
         first_line="$type: $emoji $message"
       fi
