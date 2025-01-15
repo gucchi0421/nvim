@@ -1,4 +1,31 @@
--- config/autocmds.lua
+-- ================================================
+-- バッファの自動保存
+-- ・10秒ごとにカーソルの停止状態
+-- ・バッファの切り替え時
+-- ================================================
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  callback = function()
+    -- 現在のバッファを保存
+    if vim.bo.modified then
+      vim.cmd("write")
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+  callback = function()
+    -- 現在のバッファを保存
+    if vim.bo.modified then
+      vim.cmd("write")
+    end
+  end,
+})
+
+vim.opt.updatetime = 10000
+
+-- ================================================
+-- Winbarのカスタムカラー
+-- ================================================
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
     vim.cmd([[ highlight WinBarPath guifg=#606060 guibg=#1c1c1c ]])
@@ -30,7 +57,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- ================================================
 -- Sassの自動コンパイル
 -- ================================================
--- ジョブ管理用テーブル
 local sass_jobs = {}
 
 -- 再帰的に特定のディレクトリを検出
@@ -260,4 +286,3 @@ autocmd({ "ModeChanged" }, {
     end
   end,
 })
-

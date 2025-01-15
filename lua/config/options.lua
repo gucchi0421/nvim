@@ -15,12 +15,4 @@ vim.opt.helplang = "ja" -- ヘルプファイルの言語は日本語
 vim.opt.guicursor = "n-i:ver25" -- フォーカスしている行を太字にする
 vim.opt.termguicolors = true -- 24ビットカラー
 vim.opt.spelllang = "cjk" -- 日本語のスペルチェック
-
--- カーソルの見た目と色を変更
 vim.opt.guicursor = "n-v-c:block" -- ノーマル、ビジュアル、コマンドモードでボックスカーソル
-
--- カーソルの色を淡いオレンジに設定
-vim.cmd([[
-  highlight Cursor guifg=NONE guibg=#FFA500
-]])
-
