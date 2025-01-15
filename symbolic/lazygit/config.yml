@@ -291,7 +291,7 @@ customCommands:
       
       first_line=""
       if [ -n "$scope" ]; then
-        first_line="$type($scope): $emoji$message"
+        first_line="$type($scope): $message $emoji"
       else
         first_line="$type: $emoji $message"
       fi
