@@ -16,3 +16,5 @@ vim.opt.guicursor = "n-i:ver25" -- フォーカスしている行を太字にす
 vim.opt.termguicolors = true -- 24ビットカラー
 vim.opt.spelllang = "cjk" -- 日本語のスペルチェック
 vim.opt.guicursor = "n-v-c:block" -- ノーマル、ビジュアル、コマンドモードでボックスカーソル
+vim.opt.list = false -- リストモードを無効化（タブの > を非表示）
+vim.opt.listchars = { trail = "·", extends = ">", precedes = "<" } -- タブの設定を削除
