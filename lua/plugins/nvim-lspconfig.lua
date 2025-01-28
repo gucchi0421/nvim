@@ -125,6 +125,7 @@ return {
                 buildFlags = {}, -- 空に設定
                 gofumpt = true,
                 codelenses = {
+                  "bufls",
                   gc_details = true, -- ガベージコレクションの詳細。
                   generate = true, -- コード生成。
                   regenerate_cgo = true, -- cgoコードの再生成。
@@ -217,6 +218,7 @@ return {
                   "Reflection", -- リフレクションAPI
                   "composer", -- Composerサポート
                   "PDO", -- PDOサポート
+                  "bufls",
                   "Core", -- PHPのコア機能
                   "SPL", -- SPL (Standard PHP Library)
                   "pcntl", -- プロセス制御関連
@@ -345,6 +347,7 @@ return {
           })
         end,
       })
+      lspconfig.protols.setup({})
       -- LSPの自動起動
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
@@ -365,6 +368,7 @@ return {
           "rust",
           "lua",
           "blade",
+          "proto",
         },
         callback = function()
           vim.cmd("LspStart")
