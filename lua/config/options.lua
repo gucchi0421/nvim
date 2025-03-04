@@ -18,3 +18,5 @@ vim.opt.spelllang = "cjk" -- 日本語のスペルチェック
 vim.opt.guicursor = "n-v-c:block" -- ノーマル、ビジュアル、コマンドモードでボックスカーソル
 vim.opt.list = false -- リストモードを無効化（タブの > を非表示）
 vim.opt.listchars = { trail = "·", extends = ">", precedes = "<" } -- タブの設定を削除
+vim.opt.wrap = true
+vim.opt.whichwrap = "b,s,[,],<,>"

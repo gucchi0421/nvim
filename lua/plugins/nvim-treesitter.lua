@@ -26,7 +26,6 @@ return {
         "prisma",
         "blade",
       },
-      indent = { enable = true },
     },
     config = function(_, opts)
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
