@@ -23,7 +23,6 @@ return {
       vim.g.VM_silent_exit = 1
     end,
   },
-
   {
     -- gc  => コメントアウトメニュー
     -- gcc => カーソル位置のコメントアウト
@@ -85,30 +84,8 @@ return {
           augend.date.alias["%m/%d/%Y"],
         },
       })
-
-      -- 通常モードで値を増加
-      vim.keymap.set("n", "<A-a>", require("dial.map").inc_normal(), { noremap = true })
-      -- 通常モードで値を減少
-      vim.keymap.set("n", "<A-x>", require("dial.map").dec_normal(), { noremap = true })
-      -- ビジュアルモードで値を増加
-      vim.keymap.set("v", "<A-a>", require("dial.map").inc_visual(), { noremap = true })
-      -- ビジュアルモードで値を減少
-      vim.keymap.set("v", "<A-x>", require("dial.map").dec_visual(), { noremap = true })
-      -- 複数行で値を増加
-      vim.keymap.set("v", "g<A-a>", require("dial.map").inc_gvisual(), { noremap = true })
-      -- 複数行で値を減少
-      vim.keymap.set("v", "g<A-x>", require("dial.map").dec_gvisual(), { noremap = true })
+      vim.keymap.set("n", "<M-]>", require("dial.map").inc_normal(), { noremap = true }) -- 増加
+      vim.keymap.set("n", "<M-[>", require("dial.map").dec_normal(), { noremap = true }) -- 減少
     end,
-  },
-  {
-    {
-      "psjay/buffer-closer.nvim",
-      config = function()
-        require("buffer-closer").setup({
-          -- Qで開いているバッファを閉じる
-          close_key = "Q",
-        })
-      end,
-    },
   },
 }

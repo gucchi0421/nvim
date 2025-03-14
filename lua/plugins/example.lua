@@ -3,22 +3,6 @@
 if true then return {} end
 
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-      lsp = {
-        setup = {
-          on_attach = function(client, bufnr)
-            vim.bo[bufnr].omnifunc = nil
-          end,
-        },
-      },
-    },
-  },
-
   -- change trouble config
   {
     "folke/trouble.nvim",

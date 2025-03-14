@@ -3,13 +3,7 @@ return {
     "coffebar/neovim-project",
     opts = {
       projects = { -- define project roots
-        "~/documents/functions/*",
-        "~/documents/templates/*",
-        "~/documents/services/*",
-        "~/documents/tools/*",
-        "~/documents/workspace/*/*",
-        "~/documents/works/*",
-        "~/documents/zenn/*",
+        "~/documents/**/*",
         "~/.config/nvim/",
       },
       picker = {
