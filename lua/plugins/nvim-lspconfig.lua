@@ -30,6 +30,7 @@ return {
           "jdtls",
           "lua_ls",
           "emmet_ls",
+          "protols",
         },
       })
 
@@ -329,6 +330,9 @@ return {
         end,
         ["jdtls"] = function()
           lspconfig.jdtls.setup({ cmd = { "jdtls" } })
+        end,
+        ["protols"] = function()
+          lspconfig.protols.setup({})
         end,
         ["lua_ls"] = function()
           lspconfig.lua_ls.setup({

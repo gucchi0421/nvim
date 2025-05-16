@@ -5,24 +5,23 @@
 -- ================================================
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   callback = function()
-    -- 現在のバッファを保存
-    if vim.bo.modified then
-      vim.cmd("write")
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+    if buftype == "" and vim.bo.modified then
+      vim.cmd("silent! update")
     end
   end,
 })
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   callback = function()
-    -- 現在のバッファを保存
-    if vim.bo.modified then
-      vim.cmd("write")
+    local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+    if buftype == "" and vim.bo.modified then
+      vim.cmd("silent! update")
     end
   end,
 })
 
 vim.opt.updatetime = 10000
-
 -- ================================================
 -- Winbarのカスタムカラー
 -- ================================================
